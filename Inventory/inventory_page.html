@@ -8,24 +8,47 @@
     body {
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f6f6f6;
     }
     .container {
         width: 640px;
         height: 960px;
-        background-color: #f2f2f2;
+        background-color: #ffffff;
         margin: 0 auto;
         padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     .top-bar, .bottom-bar {
-        background-color: black;
+        background-color: #1a936f;
         color: white;
-        padding: 10px;
+        padding: 15px 0;
         text-align: center;
-        font-size: 20px;
+        font-size: 24px;
+        border-radius: 10px 10px 0 0;
     }
     .search-bar {
         margin-top: 10px;
+        text-align: center;
+    }
+    input[type="text"] {
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        margin-right: 10px;
+        width: 60%;
+    }
+    input[type="text"]::placeholder {
+        color: #ccc;
+    }
+    button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #1a936f;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
     }
     table {
         width: 100%;
@@ -33,12 +56,14 @@
         border-collapse: collapse;
     }
     th, td {
-        padding: 10px;
+        padding: 15px 10px;
         border-bottom: 1px solid #ddd;
         text-align: left;
+        font-size: 16px;
     }
     th {
-        background-color: #f2f2f2;
+        background-color: #1a936f;
+        color: white;
         font-weight: bold;
     }
     .button-container {
@@ -46,28 +71,47 @@
         text-align: center;
     }
     .button {
-        padding: 10px 20px;
+        padding: 15px 30px;
+        background-color: #1a936f;
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 25px;
         cursor: pointer;
-        margin-right: 10px;
+        margin-right: 20px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
     }
-    .button.home {background-color: black;}
-    .button.shopping-list {background-color: black;}
-    .button.inventory {background-color: green;}
-    .button.recipes {background-color: black;}
-    .button.family {background-color: black;}
+    .button:hover {
+        background-color: #147a5e;
+    }
+    .button.inventory {
+        background-color: #931a3e;
+    }
+    .bottom-bar {
+        background-color: #1a936f;
+        color: white;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 0 0 10px 10px;
+        padding: 15px 0;
+    }
+    .button.home, .button.shopping-list, .button.recipes, .button.family {
+        background-color: #333333;
+    }
+
+.button.add-from-shopping-list, .button.add-manually {
+        background-color: #ff6b6b;
+    }
 </style>
 </head>
 <body>
 <div class="container">
     <div class="top-bar">Users Inventory Page</div>
     <div class="search-bar">
-        <input type="text" placeholder="Search...">
-        <button>Search</button>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button class="button" onclick="search()">Search</button>
     </div>
-    <table>
+    <table id="inventoryTable">
         <thead>
             <tr>
                 <th>Item</th>
@@ -77,95 +121,122 @@
                 <th>Person</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tableBody">
             <tr>
                 <td>Apples</td>
                 <td>5</td>
-                <td>Fruits</td>
+                <td>Fridge</td>
                 <td>2024-04-10</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Bread</td>
                 <td>2</td>
-                <td>Bakery</td>
+                <td>Fridge</td>
                 <td>2024-04-12</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Eggs</td>
                 <td>12</td>
-                <td>Dairy</td>
+                <td>Fridge</td>
                 <td>2024-04-08</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Chicken</td>
                 <td>1</td>
-                <td>Meat</td>
+                <td>Fridge</td>
                 <td>2024-04-07</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Rice</td>
                 <td>3</td>
-                <td>Grains</td>
+                <td>Pantry</td>
                 <td>2024-04-15</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Tomatoes</td>
                 <td>4</td>
-                <td>Vegetables</td>
+                <td>Fridge</td>
                 <td>2024-04-11</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Cheese</td>
                 <td>1</td>
-                <td>Dairy</td>
+                <td>Fridge</td>
                 <td>2024-04-06</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Potatoes</td>
                 <td>6</td>
-                <td>Vegetables</td>
+                <td>Pantry</td>
                 <td>2024-04-09</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Pasta</td>
                 <td>2</td>
-                <td>Grains</td>
+                <td>Pantry</td>
                 <td>2024-04-14</td>
                 <td>[BLANK]</td>
             </tr>
             <tr>
                 <td>Milk</td>
                 <td>1</td>
-                <td>Dairy</td>
+                <td>Fridge</td>
                 <td>2024-04-05</td>
                 <td>[BLANK]</td>
             </tr>
         </tbody>
-        </table>
     </table>
     <div class="button-container">
-        <button class="button">Add to Shopping List</button>
-        <button class="button">Add Manually</button>
+        <button class="button add-from-shopping-list" onclick="addFromShoppingList()">Add From Shopping List</button>
+        <button class="button add-manually" onclick="addManually()">Add Manually</button>
     </div>
+    <p></p>
     <div class="bottom-bar">
         <button class="button home">Home</button>
         <button class="button shopping-list">Shopping List</button>
-        <button class="button inventory">Inventory</button>
         <button class="button recipes">Recipes</button>
         <button class="button family">Family</button>
+        <p></p>
+        <button class="button inventory">Inventory</button>
     </div>
 </div>
+<script>
+    function addToShoppingList() {
+        alert("Added to Shopping List");
+    }
+
+    function addManually() {
+        var itemName = prompt("Enter Item Name:");
+        var quantity = prompt("Enter Quantity:");
+        var category = prompt("Enter Category:");
+        var expirationDate = prompt("Enter Expiration Date:");
+        var person = prompt("Enter Person:");
+
+        var tableBody = document.getElementById("tableBody");
+        var newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td>${itemName}</td>
+            <td>${quantity}</td>
+            <td>${category}</td>
+            <td>${expirationDate}</td>
+            <td>${person}</td>
+        `;
+        tableBody.appendChild(newRow);
+    }
+
+    function search() {
+        // Functionality to search items
+        var searchInput = document.getElementById("searchInput").value;
+        alert("Searching for: " + searchInput);
+    }
+</script>
 </body>
 </html>
-
-
-
-
