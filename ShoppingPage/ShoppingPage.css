@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.page-container {
+    width: 640px;
+    height: 960px;
+    background-color: black;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+th {
+    font-weight: bold;
+}
+fieldset{
+    color: #C8A2C8;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+input{
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: whitesmoke;
+}
+.add-item-button{
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: #C8A2C8;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.navigation-bar {
+    background-color: black;
+    color: white;
+    padding: 7px;
+    size: 20;
+    text-align: center;
+    font-size: 20px;
+    display: flex; 
+    justify-content: space-evenly; 
+}
+
+.button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.button.home {
+    background-color: black;
+    color: limegreen;
+    size:30px;         
+}
+.button.home:active{
+    background-color: white;
+    color: black;
+}
+.button.shopping-list {background-color: black;
+                       color: crimson;}
+.button.inventory {background-color: black;
+                    color: brown;}
+.button.recipes {background-color: black;
+                    color: yellow;}
+.button.family {background-color: black;
+                color:lightblue}
