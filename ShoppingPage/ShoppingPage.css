@@ -15,16 +15,15 @@ table {
     margin-top: 20px;
     border-collapse: collapse;
 }
-th, td {
+
+th{
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: center;
     color: white;
     background-color: black;
 }
-th {
-    font-weight: bold;
-}
+
 fieldset{
     color: #C8A2C8;
     border-radius: 0.5rem;
@@ -86,4 +85,56 @@ input{
 .button.recipes {background-color: black;
                     color: yellow;}
 .button.family {background-color: black;
-                color:lightblue}
+                color:lightblue;}
+
+/* Style for the table cell */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+    justify-content: space-evenly;
+}
+
+/* Style for the icon */
+.icon-generated {
+    color: crimson;
+    margin-right: 10px; /* Add some space between the icon and item details */
+}
+
+/* Style for the item details */
+.item-details {
+    color: aquamarine;
+    flex-grow: 1; /* Expand to fill available space */
+}
+
+/* Style for the options */
+.options {
+    margin-left: auto; /* Push options to the right */
+    display: flex; /* Use flexbox for layout */
+}
+
+/* Style for the edit and delete icons */
+.edit-icon,
+.delete-icon,
+.validate-icon {
+    margin-right: 10px; /* Add some space between the icons */
+    cursor: pointer;
+    color: lightskyblue;
+}
+
+.edit-icon:hover{
+    color: orange;
+}
+.delete-icon:hover{
+    color:crimson;
+}
+.validate-icon:hover{
+    color:lightgreen;
+}
+.purchase{
+    color:crimson;
+    font-size: bold;
+    justify-content:center;
+    size: 1rem;
+}
