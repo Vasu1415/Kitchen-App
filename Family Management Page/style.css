@@ -1,0 +1,119 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  h3{
+    margin-left: 10px;
+    color: #fff;
+  }
+  h2{
+    margin-left: 10px;
+  }
+  img{
+    width: 45px
+  }
+  .header{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: #ffffff;
+    font-size: 12px;
+  }
+  .container {
+    border: 1px solid #000;
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #16936F;
+  }
+  
+  .admin, .members{
+    border: 1px solid #000;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+  }
+
+  .functions{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .edit{
+    border: none;
+    background-color: inherit;
+    float: right;
+  }
+  .edit:hover{
+    background-color:#16936F;
+    border-radius: 50%;
+ 
+  }
+
+  button {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .navbar{
+    margin-top: 10px;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    margin-left: 24px;
+    display: inline-block;
+    background-color: black;
+    border-radius: 75px;
+  }
+  li:hover{
+    background-color:green
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .edit-popup {
+    display: none;
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  .edit-popup-content {
+    background-color: #fefefe;
+    margin: 40% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px; /* Could be more or less, depending on screen size */
+  }
+  #editForm{
+    display:grid;
+    margin-bottom: 10px;
+  }
+
+  #file{
+    display:none;
+  }
