@@ -43,7 +43,7 @@
         color: #ccc;
     }
     button[type="submit"] {
-        padding: 10px 20px;
+        padding: 5px 10px;
         background-color: #1a936f;
         color: white;
         border: none;
@@ -233,9 +233,20 @@
     }
 
     function search() {
-        // Functionality to search items
-        var searchInput = document.getElementById("searchInput").value;
-        alert("Searching for: " + searchInput);
+        var searchInput = document.getElementById("searchInput").value.toLowerCase();
+        var tableRows = document.querySelectorAll("#inventoryTable tbody tr");
+
+        tableRows.forEach(function(row) {
+            var item = row.cells[0].textContent.toLowerCase();
+            var category = row.cells[2].textContent.toLowerCase();
+            var person = row.cells[4].textContent.toLowerCase();
+
+            if (item.includes(searchInput) || category.includes(searchInput) || person.includes(searchInput)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
     }
 </script>
 </body>
