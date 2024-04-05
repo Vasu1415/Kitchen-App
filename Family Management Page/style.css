@@ -13,49 +13,6 @@ body, html {
   img{
     width: 45px
   }
-  .header{
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    color: #ffffff;
-    font-size: 12px;
-  }
-  .container {
-    border: 1px solid #000;
-    max-width: 640px;
-    margin: 0 auto;
-    background-color: #16936F;
-  }
-  
-  .admin, .members{
-    border: 1px solid #000;
-    margin: 10px;
-    padding: 10px;
-    background-color: #fff;
-  }
-
-  .functions{
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .pfp {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-  .edit{
-    border: none;
-    background-color: inherit;
-    float: right;
-  }
-  .edit:hover{
-    background-color:#16936F;
-    border-radius: 50%;
- 
-  }
 
   button {
     display: block;
@@ -90,7 +47,60 @@ body, html {
     padding: 14px 16px;
     text-decoration: none;
   }
-  .edit-popup {
+  .header{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: #ffffff;
+    font-size: 12px;
+  }
+  .container {
+    border: 1px solid #000;
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #16936F;
+  }
+  
+  .section{
+    border: 1px solid #000;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+  }
+
+  .functions{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .edit{
+    border: none;
+    background-color: inherit;
+    float: right;
+  }
+  .editUser{
+    border: none;
+    background-color: inherit;
+    float: right;
+  }
+  .editUser:hover{
+    background-color:#16936F;
+    border-radius: 50%;
+ 
+  }
+  .edit:hover{
+    background-color:#16936F;
+    border-radius: 50%;
+ 
+  }
+  .popup {
     display: none;
     position: fixed; /* Stay in place */
     left: 0;
@@ -102,18 +112,24 @@ body, html {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
-  .edit-popup-content {
+  .popup-content {
     background-color: #fefefe;
     margin: 40% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 500px; /* Could be more or less, depending on screen size */
   }
-  #editForm{
+  .form{
     display:grid;
     margin-bottom: 10px;
   }
 
   #file{
     display:none;
+  }
+
+  #other-users{
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ffffff;
   }

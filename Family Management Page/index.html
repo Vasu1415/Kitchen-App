@@ -4,50 +4,33 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="code.js"></script>
     <title>Fam management page</title>
 </head>
 <body>
     <div class="header">
         <h2>Family Management</h2>
     </div>
-    <div id="editPopup" class="edit-popup">
-        <div class="edit-popup-content">
-          <form id="editForm">
-            <label for="editName">Name:</label>
-            <input type="text" id="editName" name="name">
-            <label for="editAge">Age:</label>
-            <input type="text" id="editAge" name="age">
-            <label for="editLevel">Cooking Level:</label>
-            <input type="text" id="editLevel" name="level">
-            <label for="editAllergy">Allergy:</label>
-            <input type="text" id="editAllergy" name="allergy">
-            <button type="button" onclick="save_details()">Save</button>
-          </form>
-        </div>
-      </div>
     <div class="container">
-
         <h3><u>Admin</u></h3>
-        <div class="admin">
+        <div id="admin" class="section">
             <label>
                 <input type="file" id="file">
                 <img class="pfp" src="admin_avatar.png.jpg" alt="Admin">
             </label>
             <button onclick="display_popup(true)" class="edit">
-                <img src="edit-pencil.png" alt="buttonpng" border="0" />
+                <img src="edit-pencil.png" alt="buttonpng"/>
             </button>
             <p>Name: <span id="adminName">Naveen Harish</span></p>
             <p>Age: <span id="adminAge">21</span></p>
-            <p>Cooking Level: <span id="adminCookingLevel">3</span></p>
+            <p>Cooking Level: <span id="adminCookingLevel">7</span></p>
             <p>Allergy: <span id="adminAllergy">None</span></p>
         </div>
 
         <h3><u>Members</u></h3>
-        <div class="members"></div>
+        <div id="other-users"></div>
         <div class="functions">
             <button>Show Info</button>
-            <button>Add User</button>
+            <button id="addButton" onclick="display_member_popup(true)">Add User</button>
             <button>Delete User</button>
         </div>
         <div class="navbar">
@@ -59,6 +42,45 @@
                 <li><a href="default.html">Family</a></li>
               </ul>
         </div>
+        <div id="editPopup" class="popup">
+            <div id="edit-popup-content" class="popup-content">
+                <span id="closeEdit">&times;</span>
+                <legend><b>Edit Profile</b></legend>
+              <form id="editForm" class="form">
+                <label for="imageUpload">Change profile picture.</label> 
+                <input type="file" id="editImageUpload" name="imageUpload">
+                <label for="editName">Name:</label>
+                <input type="text" id="editName" name="name">
+                <label for="editAge">Age:</label>
+                <input type="text" id="editAge" name="age">
+                <label for="editLevel">Cooking Level:</label>
+                <input type="text" id="editLevel" name="level">
+                <label for="editAllergy">Allergy:</label>
+                <input type="text" id="editAllergy" name="allergy">
+                <button type="button" onclick="save_details()">Save</button>
+              </form>
+            </div>
+        </div>
+        <div id="new-member-popup" class="popup">
+            <div id="member-content" class="popup-content">
+                <span id="closeMember">&times;</span>
+                <form id="member-form" class="form">
+                    <legend><b>New Member Setup</b></legend>
+                    <label for="imageUpload">Select a profile picture.</label> 
+                    <input type="file" id="newMemberImageUpload" name="imageUpload">
+                    <label for="editName">Name:</label>
+                    <input type="text" id="memberName" name="name">
+                    <label for="editAge">Age:</label>
+                    <input type="text" id="memberAge" name="age">
+                    <label for="editLevel">Cooking Level:</label>
+                    <input type="text" id="memberLevel" name="level">
+                    <label for="editAllergy">Allergy:</label>
+                    <input type="text" id="memberAllergy" name="allergy">
+                    <input id='create-button' type='button' value='Create Member'>
+                  </form>  
+            </div>
+        </div>
     </div>
+    <script src="code.js"></script>
 </body>
 </html>
