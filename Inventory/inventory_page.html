@@ -34,7 +34,7 @@
     }
     input[type="text"] {
         padding: 10px;
-        border: 1px solid black; /* Added black border */
+        border: 1px solid black;
         border-radius: 20px;
         margin-right: 10px;
         width: 60%;
@@ -173,14 +173,14 @@
                 <td>Apples</td>
                 <td>5</td>
                 <td>Fridge</td>
-                <td>2024-04-10</td>
-                <td>[BLANK]</td>
+                <td>04/10/2024</td>
+                <td>Naveen</td>
             </tr>
             <!-- Add more rows here -->
         </tbody>
     </table>
     <div class="button-container">
-        <button class="button add-from-shopping-list" onclick="addToShoppingList()">Add From Shopping List</button>
+        <button class="button add-from-shopping-list" onclick="addToShoppingListFromShoppingPage()">Add From Shopping Page</button>
         <button class="button add-manually" onclick="openModal()">Add Manually</button>
     </div>
     <!-- Modal -->
@@ -189,15 +189,15 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Add Item Manually</h2>
             <label for="itemName">Item Name:</label><br>
-            <input type="text" id="itemName"><br>
+            <input type="text" id="itemName" onclick="clearInput('itemName')"><br>
             <label for="quantity">Quantity:</label><br>
-            <input type="text" id="quantity"><br>
+            <input type="text" id="quantity" onclick="clearInput('quantity')"><br>
             <label for="category">Category:</label><br>
-            <input type="text" id="category"><br>
-            <label for="expirationDate">Expiration Date:</label><br>
-            <input type="text" id="expirationDate"><br>
+            <input type="text" id="category" onclick="clearInput('category')"><br>
+            <label for="expirationDate">Expiration Date (MM/DD/YYYY):</label><br>
+            <input type="text" id="expirationDate" placeholder="MM/DD/YYYY" onclick="clearInput('expirationDate')"><br>
             <label for="person">Person:</label><br>
-            <input type="text" id="person"><br><br>
+            <input type="text" id="person" onclick="clearInput('person')"><br><br>
             <button onclick="addItemManually()">Add Item</button>
         </div>
     </div>
@@ -212,18 +212,55 @@
     </div>
 </div>
 <script>
-    function addToShoppingList() {
-        alert("Added to Shopping List");
+    function addToShoppingListFromShoppingPage() {
+        // Fetch the table from ShoppingPage.html
+        var shoppingTableRows = document.querySelectorAll("#shoppingTable tbody tr");
+
+        // Loop through each row in the shopping table
+        shoppingTableRows.forEach(function(row) {
+            // Extract item details from each row
+            var itemName = row.cells[0].textContent;
+            var quantity = row.cells[1].textContent;
+            var category = row.cells[2].textContent;
+            var expirationDate = row.cells[3].textContent;
+            var person = row.cells[4].textContent;
+
+            // Add extracted details to the table in InventoryPage.html
+            var tableBody = document.getElementById("tableBody");
+            var newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${itemName}</td>
+                <td>${quantity}</td>
+                <td>${category}</td>
+                <td>${expirationDate}</td>
+                <td>${person}</td>
+            `;
+            tableBody.appendChild(newRow);
+        });
+
+        alert("Items added to Shopping List from Shopping Page.");
     }
 
     // Function to open the modal
     function openModal() {
+        // Clear input fields when the modal is opened
+        clearInput('itemName');
+        clearInput('quantity');
+        clearInput('category');
+        clearInput('expirationDate');
+        clearInput('person');
+
         document.getElementById("myModal").style.display = "block";
     }
 
     // Function to close the modal
     function closeModal() {
         document.getElementById("myModal").style.display = "none";
+    }
+
+    // Function to clear input fields
+    function clearInput(id) {
+        document.getElementById(id).value = "";
     }
 
     // Function to add item manually
