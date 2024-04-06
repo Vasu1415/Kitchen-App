@@ -17,6 +17,7 @@ body, html {
   button {
     display: block;
     margin-top: 10px;
+    border:none;
   }
 
   .navbar{
@@ -132,4 +133,8 @@ body, html {
     height: 300px;
     overflow-y: auto;
     border: 1px solid #ffffff;
+  }
+
+  .user-name{
+    background-color: #16936F;
   }

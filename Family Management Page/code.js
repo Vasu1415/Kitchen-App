@@ -14,7 +14,6 @@ document.querySelector('#closeMember').addEventListener('click', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('click', function(e) {
-        // Use .closest() to include the button when the image inside it is clicked
         const button = e.target.closest('.editUser');
         if (button) {
             const userId = button.getAttribute('data-userid');
@@ -24,13 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 //NEED TO FIX TO EDIT OTHER THINGS
 function display_user_edit_popup(userId) {
-    // Populate the edit form with user's details
-    document.getElementById('editName').value = document.getElementById(`user${userId}Name`).innerText;
-    // TODO:Populate other fields similarly
-    
     // Show the popup
     display_popup(true);
-
     // Store the current userId being edited, so save_details knows which user to update
     document.getElementById('editPopup').setAttribute('data-currentuser', userId);
 }
@@ -131,11 +125,12 @@ imgElement.alt = "Profile Picture";
 let memberDetails = `
     ${editButtonHtml}
     <p>Name: <span id="user${user_count}Name">${name}</span></p>
-    <p>Age: <span>${age}</span></p>
-    <p>Cooking Level: <span>${level}</span></p>
-    <p>Allergy: <span>${allergy}</span></p>
-`;
+    <p>Age: <span id="user${user_count}Age">${age}</span></p>
+    <p>Cooking Level: <span id="user${user_count}CookingLevel">${level}</span></p>
+    <p>Allergy: <span id="user${user_count}Allergy">${allergy}</span></p>
+    <p class="user_name">User Number ${user_count}</p>
 
+`;
 // Check if an image was uploaded
 if (imageUpload) {
     var reader = new FileReader();
