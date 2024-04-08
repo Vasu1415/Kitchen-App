@@ -18,6 +18,9 @@ body, html {
     display: block;
     margin-top: 10px;
     border:none;
+    border-radius:10px;
+    background-color:#000;
+    color: #fff;
   }
 
   .navbar{
@@ -48,6 +51,7 @@ body, html {
     padding: 14px 16px;
     text-decoration: none;
   }
+
   .header{
     margin: 0;
     padding: 0;
@@ -58,7 +62,8 @@ body, html {
   }
   .container {
     border: 1px solid #000;
-    max-width: 640px;
+    width: 640px;
+    height: 900px;
     margin: 0 auto;
     background-color: #16936F;
   }
@@ -68,6 +73,7 @@ body, html {
     margin: 10px;
     padding: 10px;
     background-color: #fff;
+    border-radius: 10px;
   }
 
   .functions{
@@ -108,13 +114,13 @@ body, html {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
   .popup-content {
     background-color: #fefefe;
+    border-radius: 10px;
     margin: 40% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -130,11 +136,22 @@ body, html {
   }
 
   #other-users{
-    height: 300px;
+    height: 250px;
     overflow-y: auto;
     border: 1px solid #ffffff;
   }
 
   .user-name{
-    background-color: #16936F;
+    float: right;
+    color: green;
+    position: relative;
+    top: -50px;
+;
+  }
+
+  #create-button{
+    border:none;
+    border-radius:10px;
+    background-color:green;
+    color: #fff;
   }

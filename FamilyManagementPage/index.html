@@ -31,7 +31,7 @@
         <div class="functions">
             <button>Show Info</button>
             <button id="addButton" onclick="display_member_popup(true)">Add User</button>
-            <button>Delete User</button>
+            <button id="deleteButton">Delete User</button>
         </div>
         <div class="navbar">
             <ul>
@@ -47,8 +47,6 @@
                 <span id="closeEdit">&times;</span>
                 <legend><b>Edit Profile</b></legend>
               <form id="editForm" class="form">
-                <label for="imageUpload">Change profile picture.</label> 
-                <input type="file" id="editImageUpload" name="imageUpload">
                 <label for="editName">Name:</label>
                 <input type="text" id="editName" name="name">
                 <label for="editAge">Age:</label>
@@ -66,8 +64,6 @@
                 <span id="closeMember">&times;</span>
                 <form id="member-form" class="form">
                     <legend><b>New Member Setup</b></legend>
-                    <label for="imageUpload">Select a profile picture.</label> 
-                    <input type="file" id="newMemberImageUpload" name="imageUpload">
                     <label for="editName">Name:</label>
                     <input type="text" id="memberName" name="name">
                     <label for="editAge">Age:</label>
