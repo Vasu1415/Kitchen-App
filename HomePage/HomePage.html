@@ -8,61 +8,53 @@
     <meta name="description" content="Basic HTML5 Document">
     <meta name="keywords" content="HTML5, Responsive">
     <link rel="stylesheet" href="./HomePage.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Mooli&display=swap"
-      rel="stylesheet"
-    />
     <script src="HomePage.js" async></script>
     <title>HomePage</title>
 </head>
 <body>
     <div class="container">
         <section id="home">
-            <h1>App Name</h1> <img src="images/image1.jpg" alt="food-app-logo" height="100">
+            <h1 class="app_heading">KITCHEN CRAFT</h1> <img src="images/image1.jpg" alt="food-app-logo" height="100" class="app_logo">
         </section>
+        <div>
+            <h2  class="pop_section_heading">Popular Items</h2>
+        </div>
         <section id="image-gallery">
-            <div class="mySlides">
-                <img src="images/image2.jpg" style="width:100%" height="400">
-            </div>    
-            <div class="mySlides">
-                <img src="images/image3.jpg" style="width:100%" height="400">
+            <div class="gallery">
+                <img src="images/image5.jpg">
             </div>
-            <div class="mySlides">
-                <img src="images/image4.jpg" style="width:100%" height="400">
+            <div class="gallery">
+                <img src="images/image2.jpg">
             </div>
-            <div class="mySlides">
-                <img src="images/image5.jpg" style="width:100%" height="400">
+            <div class="gallery">
+                <img src="images/image4.jpg">
             </div>
-            <div class="mySlides">
-                <img src="images/image6.jpg" style="width:100%" height="400">
+            <div class="gallery">
+                <img src="images/image6.jpg">
             </div>
-            <div class="mySlides">
-                <img src="images/image7.jpg" style="width:100%" height="400">
+            <div class="gallery">
+                <img src="images/image7.jpg">
             </div>
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <div class="gallery">
+                <img src="images/image3.jpg">
+            </div>
         </section>
         <br>
         <section id = "healthy-facts">
             Some important healthy tips that we must follow:
             <div class="healthy-tips">
-
             </div>
         </section>
         <br>
         <section id="navigation">
             <div class="navigation-bar">
-                <button class="button home"><i class="fas fa-home fa-lg"></i></button>
-                <button class="button shopping-list"><i class="fas fa-shopping-cart fa-lg"></i></button>
-                <button class="button inventory"><i class="fas fa-box fa-lg"></i></button>
-                <button class="button recipes"><i class="fas fa-sticky-note fa-lg"></i></button>
-                <button class="button family"> <i class="fas fa-users fa-lg"></i></button>
+                <a href="HomePage.html" class="tab-button" id="home_tab"><img src="icons/home.png" alt="Home" class="icon"></a>
+                <a href="../ShoppingPage/ShoppingPage.html" class="tab-button" id="shopping_tab"><img src="icons/shopping.png" alt="Shopping" class="icon"></a>
+                <a href="../InventoryPage/InventoryPage.html" class="tab-button" id="inventory_tab"><img src="icons/logistics.png" alt="Inventory" class="icon"></a>
+                <a href="../RecipePage/Recipe.html" class="tab-button" id="recipe_tab"><img src="icons/recipe-book.png" alt="Recipes" class="icon"></a>
+                <a href="../FamilyManagementPage/index.html" class="tab-button" id="family_tab"><img src="icons/group.png" alt="User" class="icon"></a>
             </div>
-        </section>
+        </section>        
     </div>
 </body>
 

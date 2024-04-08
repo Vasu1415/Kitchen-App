@@ -9,12 +9,6 @@
     <meta name="keywords" content="HTML5, Responsive">
     <link rel="stylesheet" href="./ShoppingPage.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Mooli&display=swap"
-      rel="stylesheet"
-    />
     <script src="ShoppingPage.js" async></script>
     <title>ShoppingList</title>
 </head>
@@ -36,16 +30,19 @@
                 <label><b>Item Name:</b> <input type="text" id="item-name" required></label><br><br>
                 <label><b>Quantity:</b> <input type="text" id="quantity-count" required></label><br><br>
                 <label><b>Person Name:</b> <input type="text" id="person-name" required></label><br><br>
+                <label><b>Item Category:</b> <input type="text" id="item-category" required></label><br><br>
                 <button onclick="addItem()" class="add-item-button">Add Item</button>
             </fieldset>
         </div>
-        <div class="navigation-bar">
-            <button class="button home"><i class="fas fa-home fa-lg"></i></button>
-            <button class="button shopping-list"><i class="fas fa-shopping-cart fa-lg"></i></button>
-            <button class="button inventory"><i class="fas fa-box fa-lg"></i></button>
-            <button class="button recipes"><i class="fas fa-sticky-note fa-lg"></i></button>
-            <button class="button family"> <i class="fas fa-users fa-lg"></i></button>
-        </div>
+        <section id="navigation">
+            <div class="navigation-bar">
+                <a href="../HomePage/HomePage.html" class="tab-button" id="home_tab"><img src="icons/home.png" alt="Home" class="icon"></a>
+                <a href="ShoppingPage.html" class="tab-button" id="shopping_tab"><img src="icons/shopping.png" alt="Shopping" class="icon"></a>
+                <a href="../InventoryPage/InventoryPage.html" class="tab-button" id="inventory_tab"><img src="icons/logistics.png" alt="Inventory" class="icon"></a>
+                <a href="../RecipePage/Recipe.html" class="tab-button" id="recipe_tab"><img src="icons/recipe-book.png" alt="Recipes" class="icon"></a>
+                <a href="../FamilyManagementPage/index.html" class="tab-button" id="family_tab"><img src="icons/group.png" alt="User" class="icon"></a>
+            </div>
+        </section>        
     </div>
 </body>
 
