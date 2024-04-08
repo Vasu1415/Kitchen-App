@@ -2,6 +2,7 @@ let users = new Array();
 let user_count = 0;
 
 document.getElementById('create-button').addEventListener('click', add_user);
+document.getElementById('deleteButton').addEventListener('click', delete_user);
 
 document.querySelector('#closeEdit').addEventListener('click', function() {
     document.getElementById('editForm').reset();
@@ -73,27 +74,6 @@ function save_details(){
     if (allergy.trim() !== "") {
         document.querySelector(`${selectorPrefix}Allergy`).innerText = allergy;
     }
-
-    // Change the profile picture if a new picture was uploaded
-    let fileInput = document.getElementById('editImageUpload');
-    if (fileInput.files && fileInput.files[0]) {
-        var reader = new FileReader();
-        
-        reader.onload = function(e) {
-            // Update the source of the profile picture image
-            // Need to handle selecting the right ".pfp" for the user being edited
-            if (userId) {
-                // If editing a user, find the user's profile picture by a more specific selector, possibly using the user ID
-                document.querySelector(`#userPfp${userId}`).src = e.target.result;
-            } else {
-                // If editing the admin, use a general selector
-                document.querySelector(".pfp").src = e.target.result;
-            }
-        };
-
-        // Read the image file as a data URL.
-        reader.readAsDataURL(fileInput.files[0]);
-    }
     //reset form after saving
     document.getElementById('editForm').reset();
     // Close the popup after saving
@@ -104,16 +84,17 @@ function save_details(){
 function add_user(){
 user_count++;
 let editButtonHtml = `<button class="editUser" data-userid="${user_count}"><img src="edit-pencil.png" alt="buttonpng"/></button>`;
+let checkboxHtml = `<input type="checkbox" class="deleteUserCheckbox" data-userid="${user_count}" />`;
 // Retrieve the vals from the popup form
 let name = document.getElementById('memberName').value;
 let age = document.getElementById('memberAge').value;
 let level = document.getElementById('memberLevel').value;
 let allergy = document.getElementById('memberAllergy').value;
-let imageUpload = document.getElementById('newMemberImageUpload').files[0]; // Adjusted ID for image upload
 
 // Create the new member element
 let memberDiv = document.createElement('div');
 memberDiv.className = 'section';
+memberDiv.id = `userSection${user_count}`;
 let imgElement = document.createElement('img');
 imgElement.className = 'pfp';
 
@@ -124,42 +105,47 @@ imgElement.alt = "Profile Picture";
 //TODO:Set span ids for the other attributes
 let memberDetails = `
     ${editButtonHtml}
+    ${checkboxHtml}
     <p>Name: <span id="user${user_count}Name">${name}</span></p>
     <p>Age: <span id="user${user_count}Age">${age}</span></p>
     <p>Cooking Level: <span id="user${user_count}CookingLevel">${level}</span></p>
     <p>Allergy: <span id="user${user_count}Allergy">${allergy}</span></p>
-    <p class="user_name">User Number ${user_count}</p>
+    <p class="user-name">User Number ${user_count}</p>
 
 `;
-// Check if an image was uploaded
-if (imageUpload) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-        // Set the uploaded image as profile picture
-        imgElement.src = e.target.result;
-
-        // Append elements after image is loaded
-        memberDiv.appendChild(imgElement);
-        memberDiv.innerHTML += memberDetails;
-        document.getElementById('other-users').appendChild(memberDiv);
-    };
-
-    // Read the image file as a data URL.
-    reader.readAsDataURL(imageUpload);
-} else {
-    // Append elements directly if no image is uploaded
     memberDiv.appendChild(imgElement);
     memberDiv.innerHTML += memberDetails;
     document.getElementById('other-users').appendChild(memberDiv);
-}
 
 // Reset the form for next input and close the popup
 document.getElementById('member-form').reset();
 display_member_popup(false);
 }
 
-function delete_user(){
+function delete_user() {
+    // Check if any users are selected
+    const selectedUsers = document.querySelectorAll('.deleteUserCheckbox:checked');
 
+    if(selectedUsers.length === 0) {
+        alert("Please select at least one user to delete.");
+        return;
+    }
+
+    // Show confirmation dialog
+    if(confirm("Are you sure you want to delete the selected user(s)?")) {
+        selectedUsers.forEach(checkbox => {
+            const userId = checkbox.getAttribute('data-userid');
+            // Remove the user element from the DOM
+            const userElement = document.getElementById(`userSection${userId}`);
+            if (userElement) {
+                userElement.remove(); // Assume each user's div has an ID like `userSection1`
+            }
+            user_count--;
+        });
+    } else {
+        // User clicked 'Cancel', do nothing
+        return;
+    }
 }
+
 
