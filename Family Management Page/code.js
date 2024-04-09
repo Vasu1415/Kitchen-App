@@ -4,10 +4,6 @@ let user_count = 0;
 document.getElementById('create-button').addEventListener('click', add_user);
 document.getElementById('deleteButton').addEventListener('click', delete_user);
 
-document.querySelector('#closeEdit').addEventListener('click', function() {
-    document.getElementById('editForm').reset();
-    document.getElementById('editPopup').style.display = 'none';
-});
 document.querySelector('#closeMember').addEventListener('click', function() {
     document.getElementById('member-form').reset();
     document.getElementById('new-member-popup').style.display = 'none';
@@ -17,72 +13,69 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('click', function(e) {
         const button = e.target.closest('.editUser');
         if (button) {
-            const userId = button.getAttribute('data-userid');
-            display_user_edit_popup(userId);
+            editItem(button)
         }
     });
 });
-//NEED TO FIX TO EDIT OTHER THINGS
-function display_user_edit_popup(userId) {
-    // Show the popup
-    display_popup(true);
-    // Store the current userId being edited, so save_details knows which user to update
-    document.getElementById('editPopup').setAttribute('data-currentuser', userId);
-}
 
 function display_member_popup(show) {
     let popup = document.getElementById("new-member-popup");
     popup.style.display = show ? 'block' : 'none';
 }
+function editItem(button) {
+    let section = button.parentNode;
+    let spans = section.getElementsByTagName("span");
 
-function display_popup(show) {
-    let popup = document.getElementById("editPopup");
-    popup.style.display = show ? 'block' : 'none';
+    for (let i = 0; i < spans.length; i++) {
+        // Check if the current span is the cooking level by a distinctive part of its id or another attribute
+        if (spans[i].className.includes("cookingLevel")) {
+            // Create a select element with options for cooking levels
+            const select = document.createElement("select");
+            select.innerHTML = `<option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>`;
+            select.value = spans[i].innerText; // Set the current value based on the span's text
+            
+            // Style the select element similarly to the spans for consistency
+            select.style.border = "1px solid #ccc";
+            select.style.padding = "5px";
+
+            // Replace the span with the select element
+            spans[i].replaceWith(select);
+
+            // Focus on the select element
+            select.focus();
+
+            // Save changes on blur
+            select.addEventListener('blur', function() {
+                saveEditOnBlur(this);
+            });
+
+            // Since the select replaces the span, there's no need to make the original span contenteditable
+        } else {
+            // Make other spans contenteditable as before
+            spans[i].setAttribute("contenteditable", "true");
+            spans[i].style.border = "1px solid #ccc";
+            spans[i].style.padding = "5px";
+            if (i === 0) spans[i].focus();
+
+            // Attach a blur event listener to save changes
+            spans[i].addEventListener('blur', function() {
+                saveEditOnBlur(this);
+            });
+        }
+    }
 }
 
-function save_details(){
-    // Get the current user being edited from the data attribute
-    const userId = document.getElementById('editPopup').getAttribute('data-currentuser');
-    
-    // Gets the values from the form fields
-    let name = document.getElementById('editName').value;
-    let age = document.getElementById('editAge').value;
-    let level = document.getElementById('editLevel').value;
-    let allergy = document.getElementById('editAllergy').value;
-    
-    // Selector prefix to target the correct elements based on whether we're editing the admin or another user
-    let selectorPrefix = userId ? `#user${userId}` : "#admin";
-    
-    // Update the details in the UI and handling empty entries
-    if (name.trim() !== "") {
-        console.log(`${selectorPrefix}Name`)
-        document.querySelector(`${selectorPrefix}Name`).innerText = name;
-    }
-    
-    //TODO: need to fix the bottom 3 and get it working similar to how the name is now. 
-    // Check and update age if not empty
-    if (age.trim() !== "") {
-        document.querySelector(`${selectorPrefix}Age`).innerText = age;
-    }
-
-    // Check and update cooking level if not empty
-    if (level.trim() !== "") {
-        document.querySelector(`${selectorPrefix}CookingLevel`).innerText = level;
-    }
-
-    // Check and update allergy if not empty
-    if (allergy.trim() !== "") {
-        document.querySelector(`${selectorPrefix}Allergy`).innerText = allergy;
-    }
-    //reset form after saving
-    document.getElementById('editForm').reset();
-    // Close the popup after saving
-    display_popup(false);
+function saveEditOnBlur(span) {
+    // This function gets called when editing is finished (user clicks away)
+    span.setAttribute("contenteditable", "false");
+    span.style.border = "none"; // Revert styling
 }
-
 
 function add_user(){
 user_count++;
+const images = ["chefpfp.jpeg", "memberpfp.jpeg"];
 let editButtonHtml = `<button class="editUser" data-userid="${user_count}"><img src="edit-pencil.png" alt="buttonpng"/></button>`;
 let checkboxHtml = `<input type="checkbox" class="deleteUserCheckbox" data-userid="${user_count}" />`;
 // Retrieve the vals from the popup form
@@ -98,8 +91,11 @@ memberDiv.id = `userSection${user_count}`;
 let imgElement = document.createElement('img');
 imgElement.className = 'pfp';
 
-// Default profile picture if none is selected
-imgElement.src = "admin_avatar.png.jpg";
+// Generate a random index based on the length of the images array
+const randomIndex = Math.floor(Math.random() * images.length);
+
+// Use the random index to select an image source
+imgElement.src = images[randomIndex];
 imgElement.alt = "Profile Picture";
 
 //TODO:Set span ids for the other attributes
@@ -108,9 +104,8 @@ let memberDetails = `
     ${checkboxHtml}
     <p>Name: <span id="user${user_count}Name">${name}</span></p>
     <p>Age: <span id="user${user_count}Age">${age}</span></p>
-    <p>Cooking Level: <span id="user${user_count}CookingLevel">${level}</span></p>
+    <p>Cooking Level: <span class="cookingLevel" id="user${user_count}CookingLevel">${level}</span></p>
     <p>Allergy: <span id="user${user_count}Allergy">${allergy}</span></p>
-    <p class="user-name">User Number ${user_count}</p>
 
 `;
     memberDiv.appendChild(imgElement);
@@ -122,30 +117,35 @@ document.getElementById('member-form').reset();
 display_member_popup(false);
 }
 
+function performDeletion(selectedUsers) {
+    selectedUsers.forEach(checkbox => {
+        const userId = checkbox.getAttribute('data-userid');
+        const userElement = document.getElementById(`userSection${userId}`);
+        if (userElement) {
+            userElement.remove();
+            user_count--;
+        }
+    });
+}
+
 function delete_user() {
-    // Check if any users are selected
     const selectedUsers = document.querySelectorAll('.deleteUserCheckbox:checked');
 
     if(selectedUsers.length === 0) {
-        alert("Please select at least one user to delete.");
         return;
     }
 
-    // Show confirmation dialog
-    if(confirm("Are you sure you want to delete the selected user(s)?")) {
-        selectedUsers.forEach(checkbox => {
-            const userId = checkbox.getAttribute('data-userid');
-            // Remove the user element from the DOM
-            const userElement = document.getElementById(`userSection${userId}`);
-            if (userElement) {
-                userElement.remove(); // Assume each user's div has an ID like `userSection1`
-            }
-            user_count--;
-        });
-    } else {
-        // User clicked 'Cancel', do nothing
-        return;
-    }
+    // Showing confirmation popup
+    document.getElementById('confirmPopup').style.display = 'block';
+
+    // Handle button clicks
+    document.getElementById('confirmYes').onclick = function() {
+        performDeletion(selectedUsers);
+        document.getElementById('confirmPopup').style.display = 'none'; // Hide the popup after confirming
+    };
+    document.getElementById('confirmNo').onclick = function() {
+        document.getElementById('confirmPopup').style.display = 'none';
+    };
 }
 
 

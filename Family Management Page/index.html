@@ -17,19 +17,18 @@
                 <input type="file" id="file">
                 <img class="pfp" src="admin_avatar.png.jpg" alt="Admin">
             </label>
-            <button onclick="display_popup(true)" class="edit">
+            <button class="editUser">
                 <img src="edit-pencil.png" alt="buttonpng"/>
             </button>
             <p>Name: <span id="adminName">Naveen Harish</span></p>
             <p>Age: <span id="adminAge">21</span></p>
-            <p>Cooking Level: <span id="adminCookingLevel">7</span></p>
+            <p>Cooking Level: <span id="adminCookingLevel" class="cookingLevel">7</span></p>
             <p>Allergy: <span id="adminAllergy">None</span></p>
         </div>
 
         <h3><u>Members</u></h3>
         <div id="other-users"></div>
         <div class="functions">
-            <button>Show Info</button>
             <button id="addButton" onclick="display_member_popup(true)">Add User</button>
             <button id="deleteButton">Delete User</button>
         </div>
@@ -42,39 +41,33 @@
                 <li><a href="default.html">Family</a></li>
               </ul>
         </div>
-        <div id="editPopup" class="popup">
-            <div id="edit-popup-content" class="popup-content">
-                <span id="closeEdit">&times;</span>
-                <legend><b>Edit Profile</b></legend>
-              <form id="editForm" class="form">
-                <label for="editName">Name:</label>
-                <input type="text" id="editName" name="name">
-                <label for="editAge">Age:</label>
-                <input type="text" id="editAge" name="age">
-                <label for="editLevel">Cooking Level:</label>
-                <input type="text" id="editLevel" name="level">
-                <label for="editAllergy">Allergy:</label>
-                <input type="text" id="editAllergy" name="allergy">
-                <button type="button" onclick="save_details()">Save</button>
-              </form>
-            </div>
-        </div>
         <div id="new-member-popup" class="popup">
             <div id="member-content" class="popup-content">
                 <span id="closeMember">&times;</span>
                 <form id="member-form" class="form">
                     <legend><b>New Member Setup</b></legend>
                     <label for="editName">Name:</label>
-                    <input type="text" id="memberName" name="name">
+                    <input type="text" id="memberName" name="name" pattern="[A-Za-z ]+">
                     <label for="editAge">Age:</label>
-                    <input type="text" id="memberAge" name="age">
+                    <input type="number" id="memberAge" name="age">
                     <label for="editLevel">Cooking Level:</label>
-                    <input type="text" id="memberLevel" name="level">
+                    <select id="memberLevel" name="level">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
                     <label for="editAllergy">Allergy:</label>
-                    <input type="text" id="memberAllergy" name="allergy">
+                    <input type="text" id="memberAllergy" name="allergy" pattern="[A-Za-z]+">
                     <input id='create-button' type='button' value='Create Member'>
                   </form>  
             </div>
+        </div>
+    </div>
+    <div id="confirmPopup" class="popup">
+        <div class="popup-content">
+        <p>Are you sure you want to delete the selected user(s)?</p>
+        <button id="confirmYes">Yes</button>
+        <button id="confirmNo">No</button>
         </div>
     </div>
     <script src="code.js"></script>
