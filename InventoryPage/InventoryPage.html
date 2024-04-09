@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./InventoryPage.css" type="text/css">
+    <script src="InventoryPage.js" async></script>
+    <title>Inventory Page</title>
+</head>
+<body>
+<div class="container">
+    <div class="top-bar">Users Inventory Page</div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search..." oninput="search()">
+        <button class="button" onclick="search()">Search</button>
+    </div>
+    <table id="inventoryTable">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Expiration Date</th>
+                <th>Person</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>Apples</td>
+                <td>5</td>
+                <td>Fridge</td>
+                <td>04/10/2024</td>
+                <td>Naveen</td>
+            </tr>
+            <!-- Add more rows here -->
+        </tbody>
+    </table>
+    <div class="button-container">
+        <button class="button add-from-shopping-list" onclick="addToShoppingListFromShoppingPage()">Add From Shopping Page</button>
+        <button class="button add-manually" onclick="openModal()">Add Manually</button>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Add Item Manually</h2>
+            <label for="itemName">Item Name:</label><br>
+            <input type="text" id="itemName" onclick="clearInput('itemName')"><br>
+            <label for="quantity">Quantity:</label><br>
+            <input type="text" id="quantity" onclick="clearInput('quantity')"><br>
+            <label for="category">Category:</label><br>
+            <input type="text" id="category" onclick="clearInput('category')"><br>
+            <label for="expirationDate">Expiration Date (MM/DD/YYYY):</label><br>
+            <input type="text" id="expirationDate" placeholder="MM/DD/YYYY" onclick="clearInput('expirationDate')"><br>
+            <label for="person">Person:</label><br>
+            <input type="text" id="person" onclick="clearInput('person')"><br><br>
+            <button onclick="addItemManually()">Add Item</button>
+        </div>
+    </div>
+    <p></p>
+    <div class="bottom-bar">
+        <button class="button home">Home</button>
+        <button class="button shopping-list">Shopping List</button>
+        <button class="button recipes">Recipes</button>
+        <button class="button family">Family</button>
+        <p></p>
+        <button class="button inventory">Inventory</button>
+    </div>
+</div>
+</body>
+</html>

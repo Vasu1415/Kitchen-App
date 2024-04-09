@@ -1,5 +1,3 @@
-let slideIndex = 1;
-showSlides(slideIndex);
 const healthTips = [
     "Drink plenty of water every day.",
     "Eat a balanced diet rich in fruits, vegetables, and whole grains.",
@@ -26,24 +24,9 @@ const healthTips = [
     "Schedule regular health check-ups with your healthcare provider to monitor your overall health and address any concerns."
 ];
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    slides[slideIndex-1].style.display = "block";
-}
-
 function displayHealthTips() {
     const selected_tips = [];
-    while (selected_tips.length < 5) {
+    while (selected_tips.length < 3) {
         const randomIndex = Math.floor(Math.random() * healthTips.length);
         const tip = healthTips[randomIndex];
         if (!selected_tips.includes(tip)) {

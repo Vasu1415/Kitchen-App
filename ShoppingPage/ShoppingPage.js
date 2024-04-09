@@ -1,10 +1,16 @@
+let items = []
+
 function addItem() {
     let item_name = document.querySelector("#item-name").value;
     let quantity = document.querySelector("#quantity-count").value;
     let person_name = document.querySelector("#person-name").value;
+    let category = document.querySelector("#item-category").value;
+    let current_date = new Date();
+    let expiry_date = new Date(current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate());
 
+    items.push((item_name,quantity,person_name,category,expiry_date));
     // Check if all inputs are filled
-    if (item_name == "" || quantity == "" || person_name == "") {
+    if (item_name == "" || quantity == "" || person_name == "" || category == "") {
         alert("Invalid Input!");
         return;
     }
@@ -27,7 +33,8 @@ function addItem() {
             <div class = "item-details">
                 Item Name: <span>${item_name}</span><br>
                 Quantity: <span>${quantity}</span><br>
-                Person: <span>${person_name}</span>
+                Person: <span>${person_name}</span><br>
+                Category: <span>${category}</span>
             </div>
             <div class = "purchased">
                 <span class = "purchase"></span>
@@ -49,6 +56,7 @@ function addItem() {
     document.querySelector("#item-name").value = "";
     document.querySelector("#quantity-count").value = "";
     document.querySelector("#person-name").value = "";
+    document.querySelector("#item-category").value = "";
     
 }
 
