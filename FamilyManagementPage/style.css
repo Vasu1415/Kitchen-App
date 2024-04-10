@@ -5,7 +5,7 @@ body, html {
   }
   h3{
     margin-left: 10px;
-    color: #fff;
+    color: black;
   }
   h2{
     margin-left: 10px;
@@ -23,35 +23,6 @@ body, html {
     color: #fff;
   }
 
-  .navbar{
-    margin-top: 10px;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
-    margin-left: 24px;
-    display: inline-block;
-    background-color: black;
-    border-radius: 75px;
-  }
-  li:hover{
-    background-color:green
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
   .header{
     margin: 0;
     padding: 0;
@@ -61,18 +32,16 @@ body, html {
     font-size: 12px;
   }
   .container {
-    border: 1px solid #000;
     width: 640px;
     height: 900px;
     margin: 0 auto;
-    background-color: #16936F;
   }
   
   .section{
     border: 1px solid #000;
     margin: 10px;
     padding: 10px;
-    background-color: #fff;
+    background-color: lightcoral;
     border-radius: 10px;
   }
 
@@ -80,6 +49,12 @@ body, html {
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .function{
+    border-radius: 0.5rem;
+    width: 90px;
+    height: 40px;
   }
   
   .pfp {
@@ -98,12 +73,12 @@ body, html {
     float: right;
   }
   .editUser:hover{
-    background-color:#16936F;
+    background-color:white;
     border-radius: 50%;
  
   }
   .edit:hover{
-    background-color:#16936F;
+    background-color:white;
     border-radius: 50%;
  
   }
@@ -131,23 +106,34 @@ body, html {
     margin-bottom: 10px;
   }
 
+  .navigation-bar {
+    background-color: lightpink; 
+    color: black; 
+    padding: 7px;
+    text-align: center;
+    font-size: 18px; 
+    display: flex; 
+    justify-content: space-evenly; 
+    border: 2px none #ced4da; 
+}
+
+.user-name{
+  float: right;
+  color: green;
+  position: relative;
+  top: -50px;
+}
+
   #file{
     display:none;
   }
 
   #other-users{
-    height: 250px;
+    height: 450px;
     overflow-y: auto;
-    border: 1px solid #ffffff;
+    border: 1px solid black;
   }
 
-  .user-name{
-    float: right;
-    color: green;
-    position: relative;
-    top: -50px;
-;
-  }
 
   #create-button{
     border:none;
@@ -155,3 +141,7 @@ body, html {
     background-color:green;
     color: #fff;
   }
+#admin{
+  background-color: lightgreen;
+}
+

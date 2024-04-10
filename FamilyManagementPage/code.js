@@ -8,6 +8,9 @@ document.querySelector('#closeMember').addEventListener('click', function() {
     document.getElementById('member-form').reset();
     document.getElementById('new-member-popup').style.display = 'none';
 });
+document.querySelector('#closeUnselected').addEventListener('click', function() {
+    document.getElementById('unselectedPopup').style.display = 'none';
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('click', function(e) {
@@ -22,48 +25,61 @@ function display_member_popup(show) {
     let popup = document.getElementById("new-member-popup");
     popup.style.display = show ? 'block' : 'none';
 }
+function setCaretPosition(elem, caretPos) {
+    if (elem !== null) {
+        if (elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.move('character', caretPos);
+            range.select();
+        } else {
+            if (elem.selectionStart) {
+                elem.focus();
+                elem.setSelectionRange(caretPos, caretPos);
+            } else
+                elem.focus();
+        }
+    }
+}
+
 function editItem(button) {
     let section = button.parentNode;
     let spans = section.getElementsByTagName("span");
 
     for (let i = 0; i < spans.length; i++) {
-        // Check if the current span is the cooking level by a distinctive part of its id or another attribute
-        if (spans[i].className.includes("cookingLevel")) {
-            // Create a select element with options for cooking levels
-            const select = document.createElement("select");
-            select.innerHTML = `<option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>`;
-            select.value = spans[i].innerText; // Set the current value based on the span's text
-            
-            // Style the select element similarly to the spans for consistency
-            select.style.border = "1px solid #ccc";
-            select.style.padding = "5px";
+        // Make spans contenteditable
+        spans[i].setAttribute("contenteditable", "true");
+        spans[i].style.border = "1px solid #ccc";
+        spans[i].style.padding = "5px";
+        if (i === 0) spans[i].focus();
 
-            // Replace the span with the select element
-            spans[i].replaceWith(select);
+        // Attach input event listener with restrictions
+        spans[i].addEventListener('input', function(e) {
+            const originalContent = this.innerText;
+            let caretPosition = document.getSelection().anchorOffset;
+            let newText = originalContent;
+            if (this.classList.contains('name') || this.classList.contains('allergy')) {
+                // Allow only letters for names and allergies
+                newText = originalContent.replace(/[^a-zA-Z\s]/g, '');
+            } else if (this.classList.contains('age')) {
+                // Allow only numbers for age
+                newText = originalContent.replace(/[^\d]/g, '');
+            } else if (this.classList.contains('cookingLevel')) {
+                // Allow only numbers 1-3 for cooking level
+                newText = originalContent.replace(/[^1-3]/g, '');
+            }
 
-            // Focus on the select element
-            select.focus();
+            if (newText !== originalContent) {
+                e.preventDefault();
+                this.innerText = newText;
+                // Attempt to restore the caret position
+                setCaretPosition(this, caretPosition - 1);
+            }
+        });
 
-            // Save changes on blur
-            select.addEventListener('blur', function() {
-                saveEditOnBlur(this);
-            });
-
-            // Since the select replaces the span, there's no need to make the original span contenteditable
-        } else {
-            // Make other spans contenteditable as before
-            spans[i].setAttribute("contenteditable", "true");
-            spans[i].style.border = "1px solid #ccc";
-            spans[i].style.padding = "5px";
-            if (i === 0) spans[i].focus();
-
-            // Attach a blur event listener to save changes
-            spans[i].addEventListener('blur', function() {
-                saveEditOnBlur(this);
-            });
-        }
+        // Attach a blur event listener to save changes
+        spans[i].addEventListener('blur', function() {
+            saveEditOnBlur(this);
+        });
     }
 }
 
@@ -102,10 +118,10 @@ imgElement.alt = "Profile Picture";
 let memberDetails = `
     ${editButtonHtml}
     ${checkboxHtml}
-    <p>Name: <span id="user${user_count}Name">${name}</span></p>
-    <p>Age: <span id="user${user_count}Age">${age}</span></p>
+    <p>Name: <span class="name" id="user${user_count}Name">${name}</span></p>
+    <p>Age: <span class="age" id="user${user_count}Age">${age}</span></p>
     <p>Cooking Level: <span class="cookingLevel" id="user${user_count}CookingLevel">${level}</span></p>
-    <p>Allergy: <span id="user${user_count}Allergy">${allergy}</span></p>
+    <p>Allergy: <span class="allergy" id="user${user_count}Allergy">${allergy}</span></p>
 
 `;
     memberDiv.appendChild(imgElement);
@@ -132,6 +148,8 @@ function delete_user() {
     const selectedUsers = document.querySelectorAll('.deleteUserCheckbox:checked');
 
     if(selectedUsers.length === 0) {
+        let popup = document.getElementById("unselectedPopup");
+        popup.style.display ='block';
         return;
     }
 
