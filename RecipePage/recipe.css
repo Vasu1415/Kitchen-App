@@ -138,19 +138,22 @@ button[type="submit"]:hover {
     left: 20px;
     text-align: left;
 	z-index: 1000;
+    gap: 10px;
 }
 
 #filter-select, #apply-filter {
-    padding: 8px 12px;
-    margin-right: 10px;
+    padding: 10px 12px;
+    margin-right: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 
+
+
 #apply-filter {
-    background-color: #4CAF50;
+    background-color: white;
     color: white;
     border: none;
     cursor: pointer;
@@ -161,7 +164,7 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 .navigation-bar {
-    background-color: lightpink; 
+    background-color: #FF6700; 
     color: black; 
     padding: 7px;
     text-align: center;

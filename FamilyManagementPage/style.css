@@ -1,11 +1,13 @@
-body, html {
+body{
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 640px;
+    height: 960px;
   }
   h3{
     margin-left: 10px;
-    color: #fff;
+    color: black;
   }
   h2{
     margin-left: 10px;
@@ -19,60 +21,28 @@ body, html {
     margin-top: 10px;
     border:none;
     border-radius:10px;
-    background-color:#000;
+    background-color:#1a936f;
     color: #fff;
   }
 
-  .navbar{
-    margin-top: 10px;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
-    margin-left: 24px;
-    display: inline-block;
-    background-color: black;
-    border-radius: 75px;
-  }
-  li:hover{
-    background-color:green
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
   .header{
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    color: #ffffff;
-    font-size: 12px;
+    background-color: lightsalmon;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px 10px 0 0;
   }
   .container {
-    border: 1px solid #000;
-    width: 640px;
-    height: 900px;
     margin: 0 auto;
-    background-color: #16936F;
+    padding: 20px;
   }
   
   .section{
     border: 1px solid #000;
     margin: 10px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #8CCFD3;
     border-radius: 10px;
   }
 
@@ -80,6 +50,17 @@ body, html {
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
+  }
+  .confirm-button{
+    display: inline-block
+  }
+
+  .function{
+    border-radius: 0.5rem;
+    width: 90px;
+    height: 40px;
+    display: inline-block;
   }
   
   .pfp {
@@ -98,12 +79,12 @@ body, html {
     float: right;
   }
   .editUser:hover{
-    background-color:#16936F;
+    background-color:white;
     border-radius: 50%;
  
   }
   .edit:hover{
-    background-color:#16936F;
+    background-color:white;
     border-radius: 50%;
  
   }
@@ -124,34 +105,90 @@ body, html {
     margin: 40% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 500px; /* Could be more or less, depending on screen size */
+    width: 500px; 
   }
   .form{
-    display:grid;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
+
+
+.form select {
+  background-color: #f0f0f0; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  padding: 8px; 
+  font-size: 16px; 
+  cursor: pointer; 
+}
+
+
+.form select:hover {
+  border-color: #888; 
+}
+
+
+.form select:focus {
+  border-color: #005A9C; 
+  outline: none; 
+}
+
+  .navigation-bar {
+    background-color: #FF6700; 
+    color: black; 
+    padding: 7px;
+    text-align: center;
+    font-size: 18px; 
+    display: flex; 
+    justify-content: space-evenly; 
+    border: 2px none #ced4da; 
+}
+
+.user-name{
+  float: right;
+  color: green;
+  position: relative;
+  top: -50px;
+}
+.icon{
+  width: 24px; 
+  height: 24px;
+  color: black; 
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
 
   #file{
     display:none;
   }
 
   #other-users{
-    height: 250px;
+    height: 450px;
     overflow-y: auto;
-    border: 1px solid #ffffff;
+    border: 1px solid black;
   }
 
-  .user-name{
-    float: right;
-    color: green;
-    position: relative;
-    top: -50px;
-;
-  }
 
   #create-button{
     border:none;
     border-radius:10px;
-    background-color:green;
+    background-color:#1a936f;
     color: #fff;
+    width: 100px;
+    height: 40px;
+    display: inline-block;
   }
+#admin{
+  background-color: #8db38b;
+}
+
+#user-default{
+  color:lightcoral;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px; 
+}
+

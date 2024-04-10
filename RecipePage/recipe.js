@@ -14,6 +14,16 @@ function unique_finder(lst){
 }
 
 function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instructions, allergies, cookingLevel) {
+    const imageArray = [
+        'RecipePage/burger.jpeg',
+        'RecipePage/donut.jpeg',
+        'RecipePage/small_food.jpeg',
+        // ... add as many as you have
+    ];
+    function getRandomImage(arr) {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
     const card = document.createElement('div');
     card.className = 'recipe-card';
     card.setAttribute('data-name', name);
@@ -26,8 +36,12 @@ function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instr
     const imageDiv = document.createElement('div');
     imageDiv.className = 'recipe-image';
     const image = document.createElement('img');
-    image.src = imageUrl;
+    
+    // Set the src to a random image from the array
+    image.src = getRandomImage(imageArray);
+    
     image.alt = name;
+
     image.width = 650;
     image.height = 350; // Adjusted to match your example
     imageDiv.appendChild(image);

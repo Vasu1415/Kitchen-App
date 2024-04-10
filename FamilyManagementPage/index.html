@@ -20,26 +20,19 @@
             <button class="editUser">
                 <img src="edit-pencil.png" alt="buttonpng"/>
             </button>
-            <p>Name: <span id="adminName">Naveen Harish</span></p>
-            <p>Age: <span id="adminAge">21</span></p>
-            <p>Cooking Level: <span id="adminCookingLevel" class="cookingLevel">7</span></p>
-            <p>Allergy: <span id="adminAllergy">None</span></p>
+            <p>Name: <span id="adminName" class="name">Naveen Harish</span></p>
+            <p>Age: <span id="adminAge" class="age">21</span></p>
+            <p>Cooking Level: <span id="adminCookingLevel" class="cookingLevel">3</span></p>
+            <p>Allergy: <span id="adminAllergy" class="allergy">None</span></p>
         </div>
 
         <h3><u>Members</u></h3>
-        <div id="other-users"></div>
-        <div class="functions">
-            <button id="addButton" onclick="display_member_popup(true)">Add User</button>
-            <button id="deleteButton">Delete User</button>
+        <div id="other-users">
+            <h3 id="user-default">No Users Found</h3>
         </div>
-        <div class="navbar">
-            <ul>
-                <li><a href="default.html">Home</a></li>
-                <li><a href="default.html">Shopping List</a></li>
-                <li><a href="default.html">Inventory</a></li>
-                <li><a href="default.html">Recipes</a></li>
-                <li><a href="default.html">Family</a></li>
-              </ul>
+        <div class="functions">
+            <button class="function" id="addButton" onclick="display_member_popup(true)"><strong>Add User</strong></button>
+            <button class="function" id="deleteButton"><strong>Delete User</strong></button>
         </div>
         <div id="new-member-popup" class="popup">
             <div id="member-content" class="popup-content">
@@ -66,10 +59,27 @@
     <div id="confirmPopup" class="popup">
         <div class="popup-content">
         <p>Are you sure you want to delete the selected user(s)?</p>
-        <button id="confirmYes">Yes</button>
-        <button id="confirmNo">No</button>
+        <button id="confirmYes" class="confirm-button">Yes</button>
+        <button id="confirmNo"class="confirm-button">No</button>
+        </div>
+    </div>
+    <div id="unselectedPopup" class="popup">
+        <div class="popup-content">
+        <span id="closeUnselected">&times;</span>
+        <p>Select a user(s) to delete</p>
         </div>
     </div>
     <script src="code.js"></script>
+    <footer>
+        <section id="navigation">
+            <div class="navigation-bar">
+                <a href="../HomePage/HomePage.html" class="tab-button" id="home_tab"><img src="icons/home.png" alt="Home" class="icon"></a>
+                <a href="../ShoppingPage/ShoppingPage.html" class="tab-button" id="shopping_tab"><img src="icons/shopping.png" alt="Shopping" class="icon"></a>
+                <a href="../InventoryPage/InventoryPage.html" class="tab-button" id="inventory_tab"><img src="icons/logistics.png" alt="Inventory" class="icon"></a>
+                <a href="../RecipePage/Recipe.html" class="tab-button" id="recipe_tab"><img src="icons/recipe-book.png" alt="Recipes" class="icon"></a>
+                <a href="../FamilyManagementPage/index.html" class="tab-button" id="family_tab"><img src="icons/group.png" alt="User" class="icon"></a>
+            </div>
+        </section>
+    </footer>
 </body>
 </html>
