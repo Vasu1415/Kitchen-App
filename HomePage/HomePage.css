@@ -4,11 +4,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: white;
+    width: 640px;
+    height: 960px;
 }
 
 .container {
-    width: 640px;
-    height: 960px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -92,7 +92,7 @@ body {
 }
 
 .navigation-bar {
-    background-color: lightpink; 
+    background-color: #FF6700; 
     color: black; 
     padding: 7px;
     text-align: center;

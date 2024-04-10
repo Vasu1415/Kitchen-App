@@ -14,7 +14,16 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.top-bar, .bottom-bar {
+.top-bar {
+    background-color: lightsalmon;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 10px 10px 0 0;
+}
+
+.bottom-bar {
     background-color: #1a936f;
     color: white;
     padding: 15px 0;
@@ -22,6 +31,7 @@ body {
     font-size: 24px;
     border-radius: 10px 10px 0 0;
 }
+
 .search-bar {
     margin-top: 10px;
     text-align: center;
@@ -81,22 +91,35 @@ th {
 .button.inventory {
     background-color: #931a3e;
 }
-.bottom-bar {
-    background-color: #1a936f;
-    color: white;
+.navigation-bar {
+    background-color: #FF6700; 
+    color: black; 
+    padding: 7px;
     text-align: center;
-    font-size: 18px;
-    border-radius: 0 0 10px 10px;
-    padding: 15px 0;
-}
-.button.home, .button.shopping-list, .button.recipes, .button.family {
-    background-color: #333333;
+    font-size: 18px; 
+    display: flex; 
+    justify-content: space-evenly; 
+    border: 2px none #ced4da; 
 }
 
-.button.add-from-shopping-list, .button.add-manually {
-    background-color: #ff6b6b;
+.tab-button {
+    padding: 10px 20px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: transparent; 
+    transition: background-color 0.3s;
 }
 
+.icon{
+    width: 24px; 
+    height: 24px;
+    color: black; 
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
 /* Modal styles */
 .modal {
     display: none;

@@ -1,13 +1,13 @@
 body {
     font-family: 'Cinzel', serif;
-    font-size: 14pt;
+    font-size: 16pt;
     margin: 0;
     padding: 0;
     background-color: white;
-}
-.page-container {
     width: 640px;
     height: 960px;
+}
+.page-container {
     margin: 0 auto;
     padding: 20px;
 }
@@ -18,42 +18,123 @@ table {
     border-collapse: collapse;
 }
 
-th{
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-    color: white;
-    background-color: black;
+th {
+    background-color: lightsalmon;
+    border: 1px solid #000; /* Or any other color you prefer */
+    padding: 8px; /* Adjust padding as needed */
+    text-align: center; /* Or center or right, as desired */
+    overflow: hidden; /* Ensures that the border-radius is respected */
+    font-weight: bold;
 }
 
-fieldset{
-    color: #C8A2C8;
-    border-radius: 0.5rem;
+.left-section,.right-section,.add-item-button {
+    display: none;
+}
+
+fieldset {
+    color: black;
+    border-radius: 10px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-input{
-    background-color: black;
+
+.display-item-button {
     padding: 10px 20px;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 16px;
     border: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    color: whitesmoke;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
 }
-.add-item-button{
-    background-color: black;
+
+.display-item-button:hover {
+    background-color: #e0e0e0;
+}
+
+.left-section,
+.right-section {
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ccc;
+    width: 70%; /* Adjust as needed */
+}
+
+.add-item-button {
     padding: 10px 20px;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 16px;
     border: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    color: #C8A2C8;
-    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #555;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+.add-item-button:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #ccc;
+    border: none;
+    color: #555;
+    transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+    background-color: #bbb;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: 70px;
     text-align: center;
 }
 
 .navigation-bar {
-    background-color: lightpink; 
+    background-color: #FF6700; 
     color: black; 
     padding: 7px;
     text-align: center;
@@ -84,22 +165,24 @@ input{
 
 /* Style for the table cell */
 td {
+    background-color: lightskyblue;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Align items vertically */
     justify-content: space-evenly;
+    color: deeppink;
 }
-
-/* Style for the icon */
-.icon-generated {
-    color: crimson;
-    margin-right: 10px; /* Add some space between the icon and item details */
+.item-details-1{
+    flex-grow: 2;
+}
+.purchased,
+.options {
+    flex-grow: 1; /* Each div takes equal width */
 }
 
 /* Style for the item details */
-.item-details {
-    color: aquamarine;
+.item-details-1{
+    color: black;
     flex-grow: 1; /* Expand to fill available space */
 }
 
@@ -115,20 +198,12 @@ td {
 .validate-icon {
     margin-right: 10px; /* Add some space between the icons */
     cursor: pointer;
-    color: lightskyblue;
+    width: 30px; 
+    height: 30px;
 }
 
-.edit-icon:hover{
-    color: orange;
-}
-.delete-icon:hover{
-    color:crimson;
-}
-.validate-icon:hover{
-    color:lightgreen;
-}
 .purchase{
-    color:crimson;
+    color:black;
     font-size: bold;
     justify-content:center;
     size: 1rem;

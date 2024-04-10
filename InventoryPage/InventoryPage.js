@@ -1,30 +1,50 @@
+let new_items = [];
 function addToShoppingListFromShoppingPage() {
-    var shoppingTableRows = document.querySelectorAll(".shopping-list-display table tr");
-    console.log(shoppingTableRows)
-    if (shoppingTableRows.length > 0) {
-        shoppingTableRows.forEach(function(row) {
-            // Extract item details from each row
-            var itemName = row.cells[0].textContent;
-            var quantity = row.cells[1].textContent;
-            var category = row.cells[2].textContent;
-            var person = row.cells[3].textContent;
-
-            // Add extracted details to the table in InventoryPage.html
-            var tableBody = document.getElementById("tableBody");
-            var newRow = document.createElement("tr");
-            newRow.innerHTML = `
-                <td>${itemName}</td>
-                <td>${quantity}</td>
-                <td>${category}</td>
-                <td>${getCurrentDatePlusOneMonth()}</td>
-                <td>${person}</td>
-            `;
-            tableBody.appendChild(newRow);
-        });
-        alert("Items added to Shopping List from Shopping Page.");
-    } else {
-        alert("No items found in the shopping list.");
+    const retrievedArray = JSON.parse(localStorage.getItem("1"));
+    let shopping_lst = [];
+    for (let i = 0; i < retrievedArray.length; i++){
+        if(i%2 == 0){
+            continue;
+        }else{
+            shopping_lst.push(retrievedArray[i]);
+        }
     }
+    if (shopping_lst.length < 1){
+        alert("No items have been currently added to the item list");
+    }else{
+        let table = document.getElementById("tableBody");
+        for (let i = 0; i < (shopping_lst.length); i++){
+            current_item = shopping_lst[i];
+            item_details = JSON.parse(localStorage.getItem(current_item));
+            console.log(item_details)
+            let item_name = item_details[0];
+            new_items.push(item_name); 
+            let item_quantity = item_details[1];
+            let person_name = item_details[2];
+            let category = item_details[3];
+            let newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                   <td>${item_name}</td>
+                   <td>${item_quantity}</td>
+                   <td>${category}</td>
+                   <td>${getCurrentDatePlusOneMonth()}</td>             
+                   <td>${person_name}</td>`;
+            console.log(newRow);
+            table.appendChild(newRow);
+        }
+    }
+    const key_checker = "3";
+    if (check_key_presence(key_checker)){
+        const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
+        let new_item_arr = [...current_inventory_items,...new_items];
+        localStorage.setItem("3",JSON.stringify(new_item_arr));
+    }else{
+        localStorage.setItem("3",JSON.stringify(new_items));
+    }
+    new_item_arr = [];
+}
+function check_key_presence(key){
+    return localStorage.getItem(key) !== null;
 }
 
 // Function to get the current date plus one month
@@ -33,9 +53,6 @@ function getCurrentDatePlusOneMonth() {
     var nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
     return nextMonthDate.toDateString(); // Convert to a string representation of the date
 }
-
-
-
 
 // Function to open the modal
 function openModal() {
@@ -66,7 +83,7 @@ function addItemManually() {
     var category = document.getElementById("category").value;
     var expirationDate = document.getElementById("expirationDate").value;
     var person = document.getElementById("person").value;
-
+    new_items.push(itemName);
     var tableBody = document.getElementById("tableBody");
     var newRow = document.createElement("tr");
     newRow.innerHTML = `
@@ -77,6 +94,15 @@ function addItemManually() {
         <td>${person}</td>
     `;
     tableBody.appendChild(newRow);
+    const key_checker = "3";
+    if (check_key_presence(key_checker)){
+        const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
+        let new_item_arr = [...current_inventory_items,...new_items];
+        localStorage.setItem("3",JSON.stringify(new_item_arr));
+    }else{
+        localStorage.setItem("3",JSON.stringify(new_items));
+    }
+    new_item_arr = [];
 
     // Close the modal after adding the item
     closeModal();
