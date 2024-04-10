@@ -138,23 +138,63 @@ function createRecipeCard(name, instructions, ingredients, allergies, cookingTim
     // Add to the DOM
     document.body.appendChild(card);
 }
+function inventory_matching(required_ingredients, inventory) {
+    for (let i = 0; i < required_ingredients.length; i++) {
+        if (!inventory.includes(required_ingredients[i])) {
+            return false; // Return false if any required ingredient is missing
+        }
+    }
+    return true; // Return true if all required ingredients are present
+}
 
 
+
+function ingredient_checker(button){
+
+    let instructions_salmon = button.getAttribute('data-instructions');
+    let required_ingredients = button.getAttribute('data-ingredients').split(",").map(ingredient => ingredient.trim());
+    const hasAllIngredients = inventory_matching(required_ingredients, inventory);
+    console.log(required_ingredients);
+    console.log(inventory);
+    if (hasAllIngredients){
+        let recipeDetails = document.getElementById("recipe-details");
+        recipeDetails.innerHTML = `<h1>Recipe for ${button.getAttribute('data-name')} </h1><p>`;
+        let instruction_lst = instructions_salmon.split('.');
+        for (let index = 0; index <= instruction_lst.length - 1; index++){
+            if (index == instruction_lst.length -1){
+                continue;
+            }
+            recipeDetails.innerHTML += `${index + 1}. ${instruction_lst[index]}.<br>`;
+        }
+        recipeDetails.innerHTML += "</p>"; 
+        document.getElementById("myModal").style.display = "block";
+    } else {
+        document.getElementById("missing-items-msg").innerHTML = "Missing items will be added to the shopping list soon";
+        document.getElementById("myModal2").style.display = "block";
+    }
+}
+
+// Function to close the modal
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
 
 
 //Second half
 
-document.addEventListener('DOMContentLoaded', function() {
+
+
+// document.addEventListener('DOMContentLoaded', function() {
 	
     // Close modal when the close button is clicked
 
 
     // Event listener to close modal when clicking outside of it
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('instructionsModal')) {
-            document.getElementById('instructionsModal').style.display = 'none';
-        }
-    };
+    // window.onclick = function(event) {
+    //     if (event.target == document.getElementById('instructionsModal')) {
+    //         document.getElementById('instructionsModal').style.display = 'none';
+    //     }
+    // };
 
 	//pre-existing reciper card inventory
 	// const inventory = ['Milk', 'Lemon', "Yogurt", "Salmon"];
@@ -186,26 +226,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			
     //     });
     // });
-    function displayRecipe(){
-        const ingredientsList = recipeCard.getAttribute('data-ingredients');
-        const ingredients = ingredientsList.split(',').map(ingredient => ingredient.trim());
-        const hasAllIngredients = ingredients.every(ingredient => inventory.includes(ingredient));
-        if (hasAllIngredients) {
-            document.getElementById('popup').style.display = 'block'; 
-        }else{
-            document.getElementById('popup-2').style.display = 'block'; 
-        }
-    }
-	
-});
+// });
 
-function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-}
 
-function closePopup2() {
-    document.getElementById('popup-2').style.display = 'none';
-}
 
 function findMissingItems(list1, list2) {
     return list2.filter(item => !list1.includes(item));
