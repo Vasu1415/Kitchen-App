@@ -10,6 +10,7 @@ body, html {
     height: 100%;
     font-family: Arial, sans-serif;
 	overflow-y: auto; 
+    padding-bottom: 30px;
 	
 }
 
@@ -38,6 +39,12 @@ footer nav ul {
 footer nav ul li a {
     text-decoration: none;
     color: white;
+}
+.container {
+    width: 640px;
+    height: 960px;
+    margin: 0 auto;
+    padding: 20px;
 }
 .recipe-card {
     display: flex;
@@ -190,4 +197,33 @@ button[type="submit"]:hover {
 
 #apply-filter:hover {
     background-color: #45a049;
+}
+.navigation-bar {
+    background-color: lightpink; 
+    color: black; 
+    padding: 7px;
+    text-align: center;
+    font-size: 18px; 
+    display: flex; 
+    justify-content: space-evenly; 
+    border: 2px none #ced4da; 
+}
+
+.tab-button {
+    padding: 10px 20px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: transparent; 
+    transition: background-color 0.3s;
+}
+
+.icon{
+    width: 24px; 
+    height: 24px;
+    color: black; 
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
 }
