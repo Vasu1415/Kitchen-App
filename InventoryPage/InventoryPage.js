@@ -1,3 +1,4 @@
+let new_items = [];
 function addToShoppingListFromShoppingPage() {
     const retrievedArray = JSON.parse(localStorage.getItem("1"));
     let shopping_lst = [];
@@ -16,7 +17,8 @@ function addToShoppingListFromShoppingPage() {
             current_item = shopping_lst[i];
             item_details = JSON.parse(localStorage.getItem(current_item));
             console.log(item_details)
-            let item_name = item_details[0]; 
+            let item_name = item_details[0];
+            new_items.push(item_name); 
             let item_quantity = item_details[1];
             let person_name = item_details[2];
             let category = item_details[3];
@@ -31,21 +33,18 @@ function addToShoppingListFromShoppingPage() {
             table.appendChild(newRow);
         }
     }
+    const key_checker = "3";
+    if (check_key_presence(key_checker)){
+        const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
+        let new_item_arr = [...current_inventory_items,...new_items];
+        localStorage.setItem("3",JSON.stringify(new_item_arr));
+    }else{
+        localStorage.setItem("3",JSON.stringify(new_items));
+    }
+    new_item_arr = [];
 }
-
-function rebuildShoppingTable() {
-    const tableData = JSON.parse(localStorage.getItem("shoppingData"));
-    const table = document.getElementById("shopping-class");
-    tableData.forEach(rowData => {
-        const newRow = document.createElement("tr");
-        rowData.forEach(cellData => {
-            const newCell = document.createElement("td");
-            newCell.textContent = cellData;
-            newRow.appendChild(newCell);
-        });
-        table.appendChild(newRow);
-    });
-    return table;
+function check_key_presence(key){
+    return localStorage.getItem(key) !== null;
 }
 
 // Function to get the current date plus one month
@@ -54,9 +53,6 @@ function getCurrentDatePlusOneMonth() {
     var nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
     return nextMonthDate.toDateString(); // Convert to a string representation of the date
 }
-
-
-
 
 // Function to open the modal
 function openModal() {
@@ -87,7 +83,7 @@ function addItemManually() {
     var category = document.getElementById("category").value;
     var expirationDate = document.getElementById("expirationDate").value;
     var person = document.getElementById("person").value;
-
+    new_items.push(itemName);
     var tableBody = document.getElementById("tableBody");
     var newRow = document.createElement("tr");
     newRow.innerHTML = `
@@ -98,6 +94,15 @@ function addItemManually() {
         <td>${person}</td>
     `;
     tableBody.appendChild(newRow);
+    const key_checker = "3";
+    if (check_key_presence(key_checker)){
+        const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
+        let new_item_arr = [...current_inventory_items,...new_items];
+        localStorage.setItem("3",JSON.stringify(new_item_arr));
+    }else{
+        localStorage.setItem("3",JSON.stringify(new_items));
+    }
+    new_item_arr = [];
 
     // Close the modal after adding the item
     closeModal();

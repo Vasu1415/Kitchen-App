@@ -1,5 +1,5 @@
-const inventory = ['Milk', 'Lemon', "Yogurt", "Salmon", "Chicken", "Bread", "Peanut Butter",
-"Jelly", "Chicken Broth", "Onions", "Garlic", "Beans", "Rice"]; //hard coded inventory
+const all_inventory = JSON.parse(localStorage.getItem("3"))
+let inventory = unique_finder(all_inventory);
 
 document.getElementById('addRecipeBtn').addEventListener('click', function() {
     document.getElementById('recipeModal').style.display = 'block';
@@ -8,6 +8,10 @@ document.getElementById('addRecipeBtn').addEventListener('click', function() {
 document.querySelector('.close').addEventListener('click', function() {
     document.getElementById('recipeModal').style.display = 'none';
 });
+
+function unique_finder(lst){
+    return [...new Set(lst)];
+}
 
 function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instructions, allergies, cookingLevel) {
     const card = document.createElement('div');
@@ -141,33 +145,57 @@ document.addEventListener('DOMContentLoaded', function() {
 	//pre-existing reciper card inventory
 	// const inventory = ['Milk', 'Lemon', "Yogurt", "Salmon"];
 
-	document.querySelectorAll('.recipe-arrow').forEach(button => {
-        button.addEventListener('click', function() {
-            const recipeCard = this.closest('.recipe-card');
-            const ingredientsList = recipeCard.getAttribute('data-ingredients');
-            const ingredients = ingredientsList.split(',').map(ingredient => ingredient.trim()); // Split by comma and trim spaces
-            const recipeName = recipeCard.getAttribute('data-name');
-            const instructions = this.getAttribute('data-instructions');
-			const allergies = this.getAttribute('data-allergies');
-			const cookingTime = recipeCard.getAttribute('data-cookingTime');
+	// document.querySelectorAll('.recipe-arrow').forEach(button => {
+    //     button.addEventListener('click', function() {
+    //         const recipeCard = this.closest('.recipe-card');
+    //         const ingredientsList = recipeCard.getAttribute('data-ingredients');
+    //         const ingredients = ingredientsList.split(',').map(ingredient => ingredient.trim()); // Split by comma and trim spaces
+    //         const recipeName = recipeCard.getAttribute('data-name');
+    //         const instructions = this.getAttribute('data-instructions');
+	// 		const allergies = this.getAttribute('data-allergies');
+	// 		const cookingTime = recipeCard.getAttribute('data-cookingTime');
 
-            const hasAllIngredients = ingredients.every(ingredient => inventory.includes(ingredient));
+    //         const hasAllIngredients = ingredients.every(ingredient => inventory.includes(ingredient));
 
-            if (hasAllIngredients) {
-                document.getElementById('recipeTitleModal').textContent = recipeName;
-				document.getElementById('cookTime').textContent = cookingTime
-                document.getElementById('recipeInstructionsModal').textContent = instructions;
-				document.getElementById('recipeAllergies').textContent = allergies;
-                document.getElementById('instructionsModal').style.display = 'block';
+    //         if (hasAllIngredients) {
+    //             document.getElementById('recipeTitleModal').textContent = recipeName;
+	// 			document.getElementById('cookTime').textContent = cookingTime
+    //             document.getElementById('recipeInstructionsModal').textContent = instructions;
+	// 			document.getElementById('recipeAllergies').textContent = allergies;
+    //             document.getElementById('instructionsModal').style.display = 'block';
 
-            } else {
-                console.log(`Not all ingredients for ${recipeName} are available in inventory.`);
-            }
+    //         } else {
+    //             const missing_items = findMissingItems(ingredients,inventory);
+    //             localStorage.setItem("4",JSON.stringify(missing_items));
+                
+    //         }
 			
-        });
-    });
+    //     });
+    // });
+    function displayRecipe(){
+        const ingredientsList = recipeCard.getAttribute('data-ingredients');
+        const ingredients = ingredientsList.split(',').map(ingredient => ingredient.trim());
+        const hasAllIngredients = ingredients.every(ingredient => inventory.includes(ingredient));
+        if (hasAllIngredients) {
+            document.getElementById('popup').style.display = 'block'; 
+        }else{
+            document.getElementById('popup-2').style.display = 'block'; 
+        }
+    }
 	
 });
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
+
+function closePopup2() {
+    document.getElementById('popup-2').style.display = 'none';
+}
+
+function findMissingItems(list1, list2) {
+    return list2.filter(item => !list1.includes(item));
+}
 
 document.getElementById('filter-select').addEventListener('change', function() {
     const filterValue = this.value;
