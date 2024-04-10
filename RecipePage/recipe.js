@@ -14,6 +14,16 @@ function unique_finder(lst){
 }
 
 function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instructions, allergies, cookingLevel) {
+    const imageArray = [
+        'burger.jpeg',
+        'donut.jpeg',
+        'small_food.jpeg',
+        // ... add as many as you have
+    ];
+    function getRandomImage(arr) {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
     const card = document.createElement('div');
     card.className = 'recipe-card';
     card.setAttribute('data-name', name);
@@ -26,8 +36,12 @@ function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instr
     const imageDiv = document.createElement('div');
     imageDiv.className = 'recipe-image';
     const image = document.createElement('img');
-    image.src = imageUrl;
+    
+    // Set the src to a random image from the array
+    image.src = getRandomImage(imageArray);
+    
     image.alt = name;
+
     image.width = 650;
     image.height = 350; // Adjusted to match your example
     imageDiv.appendChild(image);
@@ -91,12 +105,12 @@ document.getElementById('recipeForm').addEventListener('submit', function(event)
     const ingredients = document.getElementById('recipeIngredients').value.split(',').map(ingredient => ingredient.trim());
     const minutes = document.getElementById('recipeTime').value;
     const glutenFree = document.getElementById('recipeGlutenFree').value === 'true';
-    const imageUrl = document.getElementById('recipeImageUrl').value || 'default-recipe-image.jpg';
+    //const imageUrl = document.getElementById('recipeImageUrl').value || 'default-recipe-image.jpg';
     const allergiesInfo = document.getElementById('allergies').value; // Ensure this matches your form's input ID
     const cookingLevel = document.getElementById('cookingLevel').value; // Ensure this matches your form's select ID
 
     // Add the new recipe card to the page
-    addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instructions, allergiesInfo, cookingLevel);
+    addRecipeToPage(name, minutes, glutenFree, ingredients,instructions, allergiesInfo, cookingLevel);
 
     document.getElementById('recipeModal').style.display = 'none';
     event.target.reset(); // Clear the form fields after submission
@@ -124,23 +138,63 @@ function createRecipeCard(name, instructions, ingredients, allergies, cookingTim
     // Add to the DOM
     document.body.appendChild(card);
 }
+function inventory_matching(required_ingredients, inventory) {
+    for (let i = 0; i < required_ingredients.length; i++) {
+        if (!inventory.includes(required_ingredients[i])) {
+            return false; // Return false if any required ingredient is missing
+        }
+    }
+    return true; // Return true if all required ingredients are present
+}
 
 
+
+function ingredient_checker(button){
+
+    let instructions_salmon = button.getAttribute('data-instructions');
+    let required_ingredients = button.getAttribute('data-ingredients').split(",").map(ingredient => ingredient.trim());
+    const hasAllIngredients = inventory_matching(required_ingredients, inventory);
+    console.log(required_ingredients);
+    console.log(inventory);
+    if (hasAllIngredients){
+        let recipeDetails = document.getElementById("recipe-details");
+        recipeDetails.innerHTML = `<h1>Recipe for ${button.getAttribute('data-name')} </h1><p>`;
+        let instruction_lst = instructions_salmon.split('.');
+        for (let index = 0; index <= instruction_lst.length - 1; index++){
+            if (index == instruction_lst.length -1){
+                continue;
+            }
+            recipeDetails.innerHTML += `${index + 1}. ${instruction_lst[index]}.<br>`;
+        }
+        recipeDetails.innerHTML += "</p>"; 
+        document.getElementById("myModal").style.display = "block";
+    } else {
+        document.getElementById("missing-items-msg").innerHTML = "Missing items will be added to the shopping list soon";
+        document.getElementById("myModal2").style.display = "block";
+    }
+}
+
+// Function to close the modal
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
 
 
 //Second half
 
-document.addEventListener('DOMContentLoaded', function() {
+
+
+// document.addEventListener('DOMContentLoaded', function() {
 	
     // Close modal when the close button is clicked
 
 
     // Event listener to close modal when clicking outside of it
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('instructionsModal')) {
-            document.getElementById('instructionsModal').style.display = 'none';
-        }
-    };
+    // window.onclick = function(event) {
+    //     if (event.target == document.getElementById('instructionsModal')) {
+    //         document.getElementById('instructionsModal').style.display = 'none';
+    //     }
+    // };
 
 	//pre-existing reciper card inventory
 	// const inventory = ['Milk', 'Lemon', "Yogurt", "Salmon"];
@@ -172,26 +226,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			
     //     });
     // });
-    function displayRecipe(){
-        const ingredientsList = recipeCard.getAttribute('data-ingredients');
-        const ingredients = ingredientsList.split(',').map(ingredient => ingredient.trim());
-        const hasAllIngredients = ingredients.every(ingredient => inventory.includes(ingredient));
-        if (hasAllIngredients) {
-            document.getElementById('popup').style.display = 'block'; 
-        }else{
-            document.getElementById('popup-2').style.display = 'block'; 
-        }
-    }
-	
-});
+// });
 
-function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-}
 
-function closePopup2() {
-    document.getElementById('popup-2').style.display = 'none';
-}
 
 function findMissingItems(list1, list2) {
     return list2.filter(item => !list1.includes(item));
