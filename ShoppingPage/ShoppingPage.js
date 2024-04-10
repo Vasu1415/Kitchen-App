@@ -9,12 +9,34 @@ function addItem() {
     let expiry_date = new Date(current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate());
 
     items.push((item_name,quantity,person_name,category,expiry_date));
-    // Check if all inputs are filled
+    let error = "";
+    // Checking for all potential errors to be fixed
     if (item_name == "" || quantity == "" || person_name == "" || category == "") {
-        alert("Invalid Input!");
+        error += "User didn't input values for all the fields.\n";
+    }
+    if (isNaN(quantity) || !Number.isInteger(parseFloat(quantity))) {
+        error += "User has entered a non integer value.\n";
+    }
+    if (/\d/.test(person_name)) {
+        error += "The name field must only contain string characters.\n";
+    }
+    if (category !== "fridge" && category !== "pantry-item"){
+        error += "The only possible categories are fridge and pantry-item.\n";
+    }
+    if (error !== ""){
+        alert(error);
         return;
     }
-    // Array of available icon classes
+    const myArray = [item_name,quantity,person_name,category];
+    const table = document.querySelector("#shopping-class");
+    items.push(item_name);
+    localStorage.setItem(item_name,JSON.stringify(myArray));
+    localStorage.setItem("1",JSON.stringify(items));
+    
+    const tableRows = Array.from(document.getElementById("shopping-class").getElementsByTagName("tr"));
+    const tableData = tableRows.map(row => Array.from(row.children).map(cell => cell.textContent));
+    localStorage.setItem("shoppingData", JSON.stringify(tableData));
+        // Array of available icon classes
     const foodIcons = ["fas fa-apple-alt fa-lg", "fas fa-banana fa-lg", "fas fa-carrot fa-lg", 
                         "fas fa-grapes fa-lg", "fas fa-lemon fa-lg", "fas fa-pepper-hot fa-lg",  
                         "fas fa-kiwi-bird fa-lg", "fas fa-bread-slice fa-lg", "fas fa-cheese fa-lg", 

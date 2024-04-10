@@ -10,30 +10,31 @@
     <link rel="stylesheet" href="./ShoppingPage.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="ShoppingPage.js" async></script>
+    <script src="../InventoryPage/InventoryPage.js" async></script>
     <title>ShoppingList</title>
 </head>
 <body>
     <div class="page-container">
-        <div class="shopping-list-display">
+        <section class="shopping-list-display">
             <table id="shopping-class" border="1">
                 <tr>
-                    <th colspan="3">Shopping List</th>
+                    <th colspan="4">Shopping List</th>
                 </tr>
             </table>
-        </div>
-
-        <div class="adding-items">
+        </section>
+        <section class="adding-items">
             <fieldset>
-                <legend>
-                    <strong>Add items! </strong>
-                </legend>       
-                <label><b>Item Name:</b> <input type="text" id="item-name" required></label><br><br>
-                <label><b>Quantity:</b> <input type="text" id="quantity-count" required></label><br><br>
-                <label><b>Person Name:</b> <input type="text" id="person-name" required></label><br><br>
-                <label><b>Item Category:</b> <input type="text" id="item-category" required></label><br><br>
-                <button onclick="addItem()" class="add-item-button">Add Item</button>
+                <legend onclick="addItem()"  class="add-item-button"><strong>Add New Items!</strong></legend>
+                <div class="left-section">       
+                    <label><b>Item Name:</b> <input type="text" id="item-name" required></label><br><br>
+                    <label><b>Item Category:</b> <input type="text" id="item-category" required></label><br><br>
+                </div>
+                <div class="right-section">
+                    <label><b>Person Name:</b> <input type="text" id="person-name" required></label><br><br>
+                    <label><b>Quantity:</b> <input type="text" id="quantity-count" required></label><br><br>
+                </div>
             </fieldset>
-        </div>
+        </section>
         <section id="navigation">
             <div class="navigation-bar">
                 <a href="../HomePage/HomePage.html" class="tab-button" id="home_tab"><img src="icons/home.png" alt="Home" class="icon"></a>

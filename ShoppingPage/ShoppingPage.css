@@ -18,14 +18,19 @@ table {
     border-collapse: collapse;
 }
 
-th{
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-    color: white;
-    background-color: black;
+th {
+    background-color: lightsalmon;
+    border: 1px solid #000; /* Or any other color you prefer */
+    padding: 8px; /* Adjust padding as needed */
+    text-align: center; /* Or center or right, as desired */
+    overflow: hidden; /* Ensures that the border-radius is respected */
+    font-weight: bold;
 }
-
+td {
+    background-color: lightcoral;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 fieldset{
     color: #C8A2C8;
     border-radius: 0.5rem;
@@ -99,7 +104,7 @@ td {
 
 /* Style for the item details */
 .item-details {
-    color: aquamarine;
+    color: black;
     flex-grow: 1; /* Expand to fill available space */
 }
 

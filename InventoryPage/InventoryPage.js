@@ -1,30 +1,51 @@
 function addToShoppingListFromShoppingPage() {
-    var shoppingTableRows = document.querySelectorAll(".shopping-list-display table tr");
-    console.log(shoppingTableRows)
-    if (shoppingTableRows.length > 0) {
-        shoppingTableRows.forEach(function(row) {
-            // Extract item details from each row
-            var itemName = row.cells[0].textContent;
-            var quantity = row.cells[1].textContent;
-            var category = row.cells[2].textContent;
-            var person = row.cells[3].textContent;
-
-            // Add extracted details to the table in InventoryPage.html
-            var tableBody = document.getElementById("tableBody");
-            var newRow = document.createElement("tr");
-            newRow.innerHTML = `
-                <td>${itemName}</td>
-                <td>${quantity}</td>
-                <td>${category}</td>
-                <td>${getCurrentDatePlusOneMonth()}</td>
-                <td>${person}</td>
-            `;
-            tableBody.appendChild(newRow);
-        });
-        alert("Items added to Shopping List from Shopping Page.");
-    } else {
-        alert("No items found in the shopping list.");
+    const retrievedArray = JSON.parse(localStorage.getItem("1"));
+    let shopping_lst = [];
+    for (let i = 0; i < retrievedArray.length; i++){
+        if(i%2 == 0){
+            continue;
+        }else{
+            shopping_lst.push(retrievedArray[i]);
+        }
     }
+    if (shopping_lst.length < 1){
+        alert("No items have been currently added to the item list");
+    }else{
+        let table = document.getElementById("tableBody");
+        for (let i = 0; i < (shopping_lst.length); i++){
+            current_item = shopping_lst[i];
+            item_details = JSON.parse(localStorage.getItem(current_item));
+            console.log(item_details)
+            let item_name = item_details[0]; 
+            let item_quantity = item_details[1];
+            let person_name = item_details[2];
+            let category = item_details[3];
+            let newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                   <td>${item_name}</td>
+                   <td>${item_quantity}</td>
+                   <td>${category}</td>
+                   <td>${getCurrentDatePlusOneMonth()}</td>             
+                   <td>${person_name}</td>`;
+            console.log(newRow);
+            table.appendChild(newRow);
+        }
+    }
+}
+
+function rebuildShoppingTable() {
+    const tableData = JSON.parse(localStorage.getItem("shoppingData"));
+    const table = document.getElementById("shopping-class");
+    tableData.forEach(rowData => {
+        const newRow = document.createElement("tr");
+        rowData.forEach(cellData => {
+            const newCell = document.createElement("td");
+            newCell.textContent = cellData;
+            newRow.appendChild(newCell);
+        });
+        table.appendChild(newRow);
+    });
+    return table;
 }
 
 // Function to get the current date plus one month
