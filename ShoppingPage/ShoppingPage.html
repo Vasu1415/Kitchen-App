@@ -24,16 +24,33 @@
         </section>
         <section class="adding-items">
             <fieldset>
-                <legend onclick="addItem()"  class="add-item-button"><strong>Add New Items!</strong></legend>
-                <div class="left-section">       
-                    <label><b>Item Name:</b> <input type="text" id="item-name" required></label><br><br>
-                    <label><b>Item Category:</b> <input type="text" id="item-category" required></label><br><br>
+                <legend onclick="displayItem()" class="display-item-button"><strong>Click here to add new items!</strong></legend>
+                <div class="inputs-container">
+                    <div class="left-section">
+                        <div class="input-group">
+                            <input type="text" id="item-name" placeholder="Item Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="item-category" placeholder="Item Category" required>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="input-group">
+                            <input type="text" id="person-name" placeholder="Person Name" required>
+                        </div>
+                        <div class="input-group quantity-input-group">
+                            <div class="quantity-controls">
+                                <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                                <input type="number" id="quantity-count" placeholder="Quantity" value="1" required>
+                                <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="right-section">
-                    <label><b>Person Name:</b> <input type="text" id="person-name" required></label><br><br>
-                    <label><b>Quantity:</b> <input type="text" id="quantity-count" required></label><br><br>
+                <div onclick="addItem()" class="add-item-button">
+                    <strong>Add Your Item</strong>
                 </div>
-            </fieldset>
+            </fieldset>            
         </section>
         <section id="navigation">
             <div class="navigation-bar">

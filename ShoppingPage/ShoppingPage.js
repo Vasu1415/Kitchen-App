@@ -49,22 +49,19 @@ function addItem() {
     }
     let newRowContent = `
         <td>
-            <div class = "icon-generated">
-                <i class="${icon_generated}"></i>
-            </div>
-            <div class = "item-details">
+            <div class = "item-details-1">
                 Item Name: <span>${item_name}</span><br>
-                Quantity: <span>${quantity}</span><br>
+                Item Category: <span>${category}</span><br>
                 Person: <span>${person_name}</span><br>
-                Category: <span>${category}</span>
+                Quantity: <span>${quantity}</span><br>
             </div>
             <div class = "purchased">
                 <span class = "purchase"></span>
             </div>
             <div class = "options">
-                <i class="fas fa-pencil-alt edit-icon fa-lg" onclick="editItem(this)"></i>
-                <i class="fas fa-trash delete-icon fa-lg" onclick="deleteItem(this)"></i>
-                <i class="fas fa-check validate-icon fa-lg" onclick="validateItem(this)"></i>
+                <img src = "icons/pencil.png" alt ="editor" class="edit-icon" onclick="editItem(this)">
+                <img src = "icons/garbage.png" alt ="trash bin" class="delete-icon" onclick="deleteItem(this)">
+                <img src = "icons/correct.png" alt ="validation" class="validate-icon" onclick="validateItem(this)">                
             </div>
         </td>
     `;
@@ -102,5 +99,28 @@ function validateItem(element) {
     let purchaseSpan = row.querySelector('.purchased .purchase');
     if (purchaseSpan) {
         purchaseSpan.textContent = "PURCHASED";
+    }
+}
+
+function displayItem() {
+    var contentToToggle = document.querySelectorAll('.left-section,.right-section,.add-item-button');
+    contentToToggle.forEach(function(element) {
+        if (element.style.display === 'none') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    });
+}
+function increaseQuantity() {
+    var quantityInput = document.getElementById('quantity-count');
+    quantityInput.value = parseInt(quantityInput.value) + 1;
+}
+
+function decreaseQuantity() {
+    var quantityInput = document.getElementById('quantity-count');
+    var currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
     }
 }

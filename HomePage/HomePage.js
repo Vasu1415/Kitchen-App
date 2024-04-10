@@ -26,7 +26,7 @@ const healthTips = [
 
 function displayHealthTips() {
     const selected_tips = [];
-    while (selected_tips.length < 3) {
+    while (selected_tips.length < 4) {
         const randomIndex = Math.floor(Math.random() * healthTips.length);
         const tip = healthTips[randomIndex];
         if (!selected_tips.includes(tip)) {
