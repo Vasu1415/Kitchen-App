@@ -15,9 +15,9 @@ function unique_finder(lst){
 
 function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instructions, allergies, cookingLevel) {
     const imageArray = [
-        'RecipePage/burger.jpeg',
-        'RecipePage/donut.jpeg',
-        'RecipePage/small_food.jpeg',
+        'burger.jpeg',
+        'donut.jpeg',
+        'small_food.jpeg',
         // ... add as many as you have
     ];
     function getRandomImage(arr) {
@@ -105,12 +105,12 @@ document.getElementById('recipeForm').addEventListener('submit', function(event)
     const ingredients = document.getElementById('recipeIngredients').value.split(',').map(ingredient => ingredient.trim());
     const minutes = document.getElementById('recipeTime').value;
     const glutenFree = document.getElementById('recipeGlutenFree').value === 'true';
-    const imageUrl = document.getElementById('recipeImageUrl').value || 'default-recipe-image.jpg';
+    //const imageUrl = document.getElementById('recipeImageUrl').value || 'default-recipe-image.jpg';
     const allergiesInfo = document.getElementById('allergies').value; // Ensure this matches your form's input ID
     const cookingLevel = document.getElementById('cookingLevel').value; // Ensure this matches your form's select ID
 
     // Add the new recipe card to the page
-    addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instructions, allergiesInfo, cookingLevel);
+    addRecipeToPage(name, minutes, glutenFree, ingredients,instructions, allergiesInfo, cookingLevel);
 
     document.getElementById('recipeModal').style.display = 'none';
     event.target.reset(); // Clear the form fields after submission
