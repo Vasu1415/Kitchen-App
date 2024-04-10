@@ -1,7 +1,9 @@
-body, html {
+body{
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 640px;
+    height: 960px;
   }
   h3{
     margin-left: 10px;
@@ -19,29 +21,28 @@ body, html {
     margin-top: 10px;
     border:none;
     border-radius:10px;
-    background-color:#000;
+    background-color:#1a936f;
     color: #fff;
   }
 
   .header{
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    color: #ffffff;
-    font-size: 12px;
+    background-color: lightsalmon;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px 10px 0 0;
   }
   .container {
-    width: 640px;
-    height: 900px;
     margin: 0 auto;
+    padding: 20px;
   }
   
   .section{
     border: 1px solid #000;
     margin: 10px;
     padding: 10px;
-    background-color: lightcoral;
+    background-color: #8CCFD3;
     border-radius: 10px;
   }
 
@@ -49,12 +50,17 @@ body, html {
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
+  }
+  .confirm-button{
+    display: inline-block
   }
 
   .function{
     border-radius: 0.5rem;
     width: 90px;
     height: 40px;
+    display: inline-block;
   }
   
   .pfp {
@@ -99,15 +105,38 @@ body, html {
     margin: 40% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 500px; /* Could be more or less, depending on screen size */
+    width: 500px; 
   }
   .form{
-    display:grid;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 
+
+.form select {
+  background-color: #f0f0f0; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  padding: 8px; 
+  font-size: 16px; 
+  cursor: pointer; 
+}
+
+
+.form select:hover {
+  border-color: #888; 
+}
+
+
+.form select:focus {
+  border-color: #005A9C; 
+  outline: none; 
+}
+
   .navigation-bar {
-    background-color: lightpink; 
+    background-color: #FF6700; 
     color: black; 
     padding: 7px;
     text-align: center;
@@ -122,6 +151,14 @@ body, html {
   color: green;
   position: relative;
   top: -50px;
+}
+.icon{
+  width: 24px; 
+  height: 24px;
+  color: black; 
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
 }
 
   #file{
@@ -138,10 +175,20 @@ body, html {
   #create-button{
     border:none;
     border-radius:10px;
-    background-color:green;
+    background-color:#1a936f;
     color: #fff;
+    width: 100px;
+    height: 40px;
+    display: inline-block;
   }
 #admin{
-  background-color: lightgreen;
+  background-color: #8db38b;
+}
+
+#user-default{
+  color:lightcoral;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px; 
 }
 

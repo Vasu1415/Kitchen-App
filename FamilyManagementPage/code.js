@@ -90,6 +90,7 @@ function saveEditOnBlur(span) {
 }
 
 function add_user(){
+document.getElementById("user-default").style.display = "none";
 user_count++;
 const images = ["chefpfp.jpeg", "memberpfp.jpeg"];
 let editButtonHtml = `<button class="editUser" data-userid="${user_count}"><img src="edit-pencil.png" alt="buttonpng"/></button>`;
@@ -160,6 +161,9 @@ function delete_user() {
     document.getElementById('confirmYes').onclick = function() {
         performDeletion(selectedUsers);
         document.getElementById('confirmPopup').style.display = 'none'; // Hide the popup after confirming
+        if(user_count === 0) {
+            document.getElementById("user-default").style.display = "block";
+        }
     };
     document.getElementById('confirmNo').onclick = function() {
         document.getElementById('confirmPopup').style.display = 'none';
