@@ -92,6 +92,9 @@ body {
 }
 
 .navigation-bar {
+    position: fixed;
+    left: 0;
+    width: 100%;
     background-color: #FF6700; 
     color: black; 
     padding: 7px;
