@@ -24,6 +24,13 @@ body{
     background-color:#1a936f;
     color: #fff;
   }
+  footer {
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 
   .header{
     background-color: lightsalmon;
@@ -166,7 +173,7 @@ body{
   }
 
   #other-users{
-    height: 450px;
+    height: 320px;
     overflow-y: auto;
     border: 1px solid black;
   }
