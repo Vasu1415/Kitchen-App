@@ -93,6 +93,19 @@ function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instr
     card.appendChild(imageDiv);
     card.appendChild(contentDiv);
     document.getElementById('recipe-container').appendChild(card);
+
+    //close buttron(?)
+    const closeButton = document.createElement('span');
+    closeButton.className = 'close';
+    closeButton.textContent = '×'; // Use a close symbol or 'x'
+
+    // Add event listener to close the modal when clicking the close button
+    closeButton.addEventListener('click', function() {
+        document.getElementById('recipeModal').style.display = 'none';
+    });
+
+    // Add the close button to the modal content
+    document.querySelector('.modal-content').appendChild(closeButton);
 }
 
 
