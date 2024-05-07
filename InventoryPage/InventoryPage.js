@@ -169,3 +169,60 @@ function updateInventory() {
 
     localStorage.setItem("3", JSON.stringify(inventoryData));
 }
+
+
+function filterBy() {
+    var filterType = document.getElementById("filterType").value;
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("inventoryTable");
+    switching = true;
+  
+    // Loop until no switching has been done
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        // Loop through all table rows (except the header)
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            // Get the two elements you want to compare
+            x = rows[i].getElementsByTagName("TD")[getIndex(filterType)].innerText.toLowerCase();
+            y = rows[i + 1].getElementsByTagName("TD")[getIndex(filterType)].innerText.toLowerCase();
+            // Check if the two rows should switch places
+            if (filterType.includes("LowHigh")) {
+                if (x > y) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (filterType.includes("HighLow")) {
+                if (x < y) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            // If a switch has been marked, make the switch and mark that a switch has been done
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
+
+// Function to get index based on filter type
+function getIndex(filterType) {
+    switch (filterType) {
+        case "quantityLowHigh":
+        case "quantityHighLow":
+            return 1; // Index for Quantity column
+        case "category":
+            return 2; // Index for Category column
+        case "expirationLowHigh":
+        case "expirationHighLow":
+            return 3; // Index for Expiration Date column
+        case "person":
+            return 4; // Index for Person column
+        default:
+            return 0; // Default index (shouldn't happen)
+    }
+}
+
