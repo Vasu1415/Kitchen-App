@@ -97,7 +97,7 @@ function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instr
     //close buttron(?)
     const closeButton = document.createElement('span');
     closeButton.className = 'close';
-    closeButton.textContent = '×'; // Use a close symbol or 'x'
+    closeButton.textContent = '×';
 
     // Add event listener to close the modal when clicking the close button
     closeButton.addEventListener('click', function() {
