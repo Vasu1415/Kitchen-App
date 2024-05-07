@@ -14,7 +14,7 @@
     <title>ShoppingList</title>
 </head>
 <body>
-    <div class="container">
+    <div class="page-container">
         <section class="shopping-list-display">
             <table id="shopping-class" border="1">
                 <tr>
@@ -30,14 +30,20 @@
                         <div class="input-group">
                             <input type="text" id="item-name" placeholder="Item Name" required>
                         </div>
+                        <p></p>
                         <div class="input-group">
-                            <input type="text" id="item-category" placeholder="Item Category" required>
-                        </div>
+                            <select id="item-category" required>
+                                <option value="" disabled selected>Select item category</option>
+                                <option value="Fridge">Fridge</option>
+                                <option value="Pantry">Pantry</option>
+                            </select>
                     </div>
+                    <p></p>
                     <div class="right-section">
                         <div class="input-group">
                             <input type="text" id="person-name" placeholder="Person Name" required>
                         </div>
+                        <p></p>
                         <div class="input-group quantity-input-group">
                             <div class="quantity-controls">
                                 <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>

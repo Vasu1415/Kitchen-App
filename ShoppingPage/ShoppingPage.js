@@ -20,9 +20,9 @@ function addItem() {
     if (/\d/.test(person_name)) {
         error += "The name field must only contain string characters.<br>\n";
     }
-    if (category !== "fridge" && category !== "pantry-item") {
-        error += "The only possible categories are 'fridge' and 'pantry-item'.\n";
-    }
+    // if (category !== "fridge" && category !== "pantry-item") {
+    //     error += "The only possible categories are 'fridge' and 'pantry-item'.\n";
+    // }
     if (error !== "") {
         displayError(error);
         return;
