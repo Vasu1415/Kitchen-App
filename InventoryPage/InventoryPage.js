@@ -32,20 +32,17 @@ function addToShoppingListFromShoppingPage() {
             console.log(newRow);
             table.appendChild(newRow);
         }
-        updateInventory();
     }
-    // const key_checker = "3";
-    // if (check_key_presence(key_checker)){
-    //     const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
-    //     let new_item_arr = [...current_inventory_items,...new_items];
-    //     localStorage.setItem("3",JSON.stringify(new_item_arr));
-    // }else{
-    //     localStorage.setItem("3",JSON.stringify(new_items));
-    // }
-    // new_item_arr = [];
+    const key_checker = "3";
+    if (check_key_presence(key_checker)){
+        const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
+        let new_item_arr = [...current_inventory_items,...new_items];
+        localStorage.setItem("3",JSON.stringify(new_item_arr));
+    }else{
+        localStorage.setItem("3",JSON.stringify(new_items));
+    }
+    new_item_arr = [];
 }
-
-
 function check_key_presence(key){
     return localStorage.getItem(key) !== null;
 }
@@ -81,14 +78,14 @@ function clearInput(id) {
 
 // Function to add item manually
 function addItemManually() {
-    const itemName = document.getElementById("itemName").value;
-    const quantity = document.getElementById("quantity").value;
-    const category = document.getElementById("category").value;
-    const expirationDate = document.getElementById("expirationDate").value;
-    const person = document.getElementById("person").value;
-
-    const tableBody = document.getElementById("tableBody");
-    const newRow = document.createElement("tr");
+    var itemName = document.getElementById("itemName").value;
+    var quantity = document.getElementById("quantity").value;
+    var category = document.getElementById("category").value;
+    var expirationDate = document.getElementById("expirationDate").value;
+    var person = document.getElementById("person").value;
+    new_items.push(itemName);
+    var tableBody = document.getElementById("tableBody");
+    var newRow = document.createElement("tr");
     newRow.innerHTML = `
         <td>${itemName}</td>
         <td>${quantity}</td>
@@ -97,42 +94,19 @@ function addItemManually() {
         <td>${person}</td>
     `;
     tableBody.appendChild(newRow);
+    const key_checker = "3";
+    if (check_key_presence(key_checker)){
+        const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
+        let new_item_arr = [...current_inventory_items,...new_items];
+        localStorage.setItem("3",JSON.stringify(new_item_arr));
+    }else{
+        localStorage.setItem("3",JSON.stringify(new_items));
+    }
+    new_item_arr = [];
 
-    updateInventory();
+    // Close the modal after adding the item
     closeModal();
 }
-
-// function addItemManually() {
-//     var itemName = document.getElementById("itemName").value;
-//     var quantity = document.getElementById("quantity").value;
-//     var category = document.getElementById("category").value;
-//     var expirationDate = document.getElementById("expirationDate").value;
-//     var person = document.getElementById("person").value;
-//     new_items.push(itemName);
-//     var tableBody = document.getElementById("tableBody");
-//     var newRow = document.createElement("tr");
-//     newRow.innerHTML = `
-//         <td>${itemName}</td>
-//         <td>${quantity}</td>
-//         <td>${category}</td>
-//         <td>${expirationDate}</td>
-//         <td>${person}</td>
-//     `;
-//     tableBody.appendChild(newRow);
-//     const key_checker = "3";
-//     if (check_key_presence(key_checker)){
-//         const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
-//         let new_item_arr = [...current_inventory_items,...new_items];
-//         localStorage.setItem("3",JSON.stringify(new_item_arr));
-//     }else{
-//         localStorage.setItem("3",JSON.stringify(new_items));
-//     }
-//     new_item_arr = [];
-
-//     // Close the modal after adding the item
-//     updateInventory();
-//     closeModal();
-// }
 
 function search() {
     var searchInput = document.getElementById("searchInput").value.toLowerCase();
@@ -150,79 +124,3 @@ function search() {
         }
     });
 }
-
-function updateInventory() {
-    const tableRows = document.querySelectorAll("#tableBody tr");
-    const inventoryData = [];
-
-    tableRows.forEach(row => {
-        const cells = row.querySelectorAll("td");
-        const item = [
-            cells[0].textContent,
-            cells[1].textContent,
-            cells[2].textContent,
-            cells[3].textContent,
-            cells[4].textContent
-        ];
-        inventoryData.push(item);
-    });
-
-    localStorage.setItem("3", JSON.stringify(inventoryData));
-}
-
-
-function filterBy() {
-    var filterType = document.getElementById("filterType").value;
-    var table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById("inventoryTable");
-    switching = true;
-  
-    // Loop until no switching has been done
-    while (switching) {
-        switching = false;
-        rows = table.rows;
-        // Loop through all table rows (except the header)
-        for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
-            // Get the two elements you want to compare
-            x = rows[i].getElementsByTagName("TD")[getIndex(filterType)].innerText.toLowerCase();
-            y = rows[i + 1].getElementsByTagName("TD")[getIndex(filterType)].innerText.toLowerCase();
-            // Check if the two rows should switch places
-            if (filterType.includes("LowHigh")) {
-                if (x > y) {
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (filterType.includes("HighLow")) {
-                if (x < y) {
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-        }
-        if (shouldSwitch) {
-            // If a switch has been marked, make the switch and mark that a switch has been done
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-        }
-    }
-}
-
-// Function to get index based on filter type
-function getIndex(filterType) {
-    switch (filterType) {
-        case "quantityLowHigh":
-        case "quantityHighLow":
-            return 1; // Index for Quantity column
-        case "category":
-            return 2; // Index for Category column
-        case "expirationLowHigh":
-        case "expirationHighLow":
-            return 3; // Index for Expiration Date column
-        case "person":
-            return 4; // Index for Person column
-        default:
-            return 0; // Default index (shouldn't happen)
-    }
-}
-

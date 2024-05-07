@@ -13,20 +13,6 @@
     <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search..." oninput="search()">
         <button class="button" onclick="search()">Search</button>
-        
-        <p></p>
-
-        <div class="button-container">
-            <select id="filterType">
-                <option value="quantityLowHigh">Quantity (Low to High)</option>
-                <option value="quantityHighLow">Quantity (High to Low)</option>
-                <option value="category">Category</option>
-                <option value="expirationLowHigh">Expiration Date (Low to High)</option>
-                <option value="expirationHighLow">Expiration Date (High to Low)</option>
-                <option value="person">Person</option>
-            </select>
-            <button onclick="filterBy()">Apply Filter</button>
-        </div>
     </div>
     <table id="inventoryTable">
         <thead>
@@ -43,40 +29,36 @@
                 <td>Apples</td>
                 <td>5</td>
                 <td>Fridge</td>
-                <td>05/10/2024</td>
+                <td>Fri May 10 2024</td>
                 <td>Naveen</td>
             </tr>
-            <tr>
-                <td>Pears</td>
-                <td>7</td>
-                <td>Fridge</td>
-                <td>05/12/2024</td>
-                <td>Naveen</td>
-            </tr>
+            <!-- Add more rows here -->
         </tbody>
     </table>
-
     <div class="button-container">
         <button class="button add-from-shopping-list" onclick="addToShoppingListFromShoppingPage()">Add From Shopping Page</button>
         <button class="button add-manually" onclick="openModal()">Add Manually</button>
     </div>
-
+    <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Add Item Manually</h2>
             <label for="itemName">Item Name:</label><br>
             <input type="text" id="itemName" onclick="clearInput('itemName')"><br>
+            <p></p>
             <label for="quantity">Quantity:</label><br>
             <input type="text" id="quantity" onclick="clearInput('quantity')"><br>
-            <label for="category">Category:</label><br>
+            <p></p>
             <select id="category" class="input-field" onclick="clearInput('category')">
                 <option value="" disabled selected>Select a category</option>
                 <option value="Pantry">Pantry</option>
                 <option value="Fridge">Fridge</option>
             </select><br>
+            <p></p>
             <label for="expirationDate">Expiration Date (MM/DD/YYYY):</label><br>
             <input type="text" id="expirationDate" placeholder="MM/DD/YYYY" onclick="clearInput('expirationDate')"><br>
+            <p></p>
             <label for="person">Person:</label><br>
             <input type="text" id="person" onclick="clearInput('person')"><br><br>
             <button onclick="addItemManually()">Add Item</button>
@@ -93,10 +75,5 @@
         </div>
     </section>  
 </div>
-<script>
-    function clearInput(inputId) {
-        document.getElementById(inputId).value = ''; 
-    }
-</script>
 </body>
 </html>
