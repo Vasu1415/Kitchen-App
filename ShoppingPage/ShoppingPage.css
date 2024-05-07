@@ -31,10 +31,10 @@ table {
 
 th {
     background-color: lightsalmon;
-    border: 1px solid #000; /* Or any other color you prefer */
-    padding: 8px; /* Adjust padding as needed */
-    text-align: center; /* Or center or right, as desired */
-    overflow: hidden; /* Ensures that the border-radius is respected */
+    border: 1px solid white; 
+    padding: 8px;
+    text-align: center;
+    overflow: hidden;
     font-weight: bold;
 }
 
