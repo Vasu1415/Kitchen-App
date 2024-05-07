@@ -18,7 +18,14 @@
         <thead>
             <tr>
                 <th>Item</th>
-                <th>Quantity</th>
+                <th>Quantity 
+                    <img src="icons/pencil.png" 
+                    width="20" 
+                    height="20" 
+                    alt="Edit" 
+                    class="edit-icon" 
+                    onclick="enableEdit('quantity')">
+                </th>
                 <th>Category</th>
                 <th>Expiration Date</th>
                 <th>Person</th>
@@ -27,14 +34,14 @@
         <tbody id="tableBody">
             <tr>
                 <td>Apples</td>
-                <td>5</td>
+                <td contenteditable="true">5</td>
                 <td>Fridge</td>
                 <td>Fri May 10 2024</td>
                 <td>Naveen</td>
             </tr>
             <tr>
                 <td>Pear</td>
-                <td>5</td>
+                <td contenteditable="true">5</td>
                 <td>Fridge</td>
                 <td>Fri May 10 2024</td>
                 <td>Naveen</td>

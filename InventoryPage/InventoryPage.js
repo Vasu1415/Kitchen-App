@@ -93,6 +93,9 @@ function addItemManually() {
         <td>${expirationDate}</td>
         <td>${person}</td>
     `;
+    // Make the quantity cell editable
+    newRow.querySelector('td:nth-child(2)').setAttribute("contenteditable", "true");
+    
     tableBody.appendChild(newRow);
     const key_checker = "3";
     if (check_key_presence(key_checker)){
@@ -107,6 +110,7 @@ function addItemManually() {
     // Close the modal after adding the item
     closeModal();
 }
+
 
 function search() {
     var searchInput = document.getElementById("searchInput").value.toLowerCase();
@@ -123,4 +127,14 @@ function search() {
             row.style.display = "none";
         }
     });
+}
+
+function enableEdit(id) {
+    var element = document.getElementById(id);
+    if (element.getAttribute('contenteditable') === 'true') {
+        element.setAttribute('contenteditable', 'false');
+    } else {
+        element.setAttribute('contenteditable', 'true');
+        element.focus();
+    }
 }
