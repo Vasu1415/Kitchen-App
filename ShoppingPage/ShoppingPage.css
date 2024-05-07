@@ -7,6 +7,17 @@ body {
     width: 640px;
     height: 960px;
 }
+
+.container {
+    max-width: 640px;
+    height: 960px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .page-container {
     margin: 0 auto;
     padding: 20px;

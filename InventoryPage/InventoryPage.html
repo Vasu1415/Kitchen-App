@@ -29,10 +29,9 @@
                 <td>Apples</td>
                 <td>5</td>
                 <td>Fridge</td>
-                <td>Fri May 10 2024</td>
+                <td>05/10/2024</td>
                 <td>Naveen</td>
             </tr>
-            <!-- Add more rows here -->
         </tbody>
     </table>
     <div class="button-container">
@@ -49,7 +48,11 @@
             <label for="quantity">Quantity:</label><br>
             <input type="text" id="quantity" onclick="clearInput('quantity')"><br>
             <label for="category">Category:</label><br>
-            <input type="text" id="category" onclick="clearInput('category')"><br>
+            <select id="category" class="input-field" onclick="clearInput('category')">
+                <option value="" disabled selected>Select a category</option>
+                <option value="Pantry">Pantry</option>
+                <option value="Fridge">Fridge</option>
+            </select><br>
             <label for="expirationDate">Expiration Date (MM/DD/YYYY):</label><br>
             <input type="text" id="expirationDate" placeholder="MM/DD/YYYY" onclick="clearInput('expirationDate')"><br>
             <label for="person">Person:</label><br>
@@ -68,5 +71,10 @@
         </div>
     </section>  
 </div>
+<script>
+    function clearInput(inputId) {
+        document.getElementById(inputId).value = ''; 
+    }
+</script>
 </body>
 </html>
