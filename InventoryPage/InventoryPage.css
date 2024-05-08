@@ -102,14 +102,11 @@ th {
     background-color: #931a3e;
 }
 .navigation-bar {
-    background-color: #FF6700; 
-    color: black; 
-    padding: 7px;
-    text-align: center;
-    font-size: 18px; 
-    display: flex; 
-    justify-content: space-evenly; 
-    border: 2px none #ced4da; 
+    display: flex;
+    justify-content: space-around;
+    padding: 10px; /* Increase padding for larger height */
+    background-color: #c4f9fb;
+    font-size: 15px; /* Larger font size for overall text */
 }
 
 .tab-button {
