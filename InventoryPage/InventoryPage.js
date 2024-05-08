@@ -1,4 +1,27 @@
 let new_items = [];
+
+// Call loadInventory when the page loads
+document.addEventListener("DOMContentLoaded", loadInventory);
+
+//displays inventory data according to session storage (may have to modify to account for shopping list functionality)
+function loadInventory() {
+    const inventoryData = JSON.parse(sessionStorage.getItem("invData")); 
+    if (inventoryData) {
+        const table = document.getElementById("tableBody");
+        inventoryData.forEach(item => {
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${item.name}</td>
+                <td contenteditable="true">${item.quantity}</td>
+                <td>${item.category}</td>
+                <td>${item.expirationDate}</td>
+                <td>${item.person}</td>
+            `;
+            table.appendChild(newRow);
+        });
+    }
+}
+
 function addToShoppingListFromShoppingPage() {
     const retrievedArray = JSON.parse(localStorage.getItem("1"));
     let shopping_lst = [];
@@ -78,38 +101,44 @@ function clearInput(id) {
 
 // Function to add item manually
 function addItemManually() {
+    // Gathering all item details
     var itemName = document.getElementById("itemName").value;
     var quantity = document.getElementById("quantity").value;
     var category = document.getElementById("category").value;
     var expirationDate = document.getElementById("expirationDate").value;
     var person = document.getElementById("person").value;
-    new_items.push(itemName);
+    
+    var newItem = {
+        name: itemName,
+        quantity: quantity,
+        category: category,
+        expirationDate: expirationDate,
+        person: person
+    };
+    
+    // Retrieve current inventory, add new item, and save back to sessionStorage
+    var currentInventory = JSON.parse(sessionStorage.getItem("invData")) || [];
+    currentInventory.push(newItem);
+    sessionStorage.setItem("invData", JSON.stringify(currentInventory));
+
+    // Add the new row to the table
+    addRowToTable(newItem);
+    closeModal();
+}
+//used in manual add function to add table rows
+function addRowToTable(item) {
     var tableBody = document.getElementById("tableBody");
     var newRow = document.createElement("tr");
     newRow.innerHTML = `
-        <td>${itemName}</td>
-        <td>${quantity}</td>
-        <td>${category}</td>
-        <td>${expirationDate}</td>
-        <td>${person}</td>
+        <td>${item.name}</td>
+        <td contenteditable="true">${item.quantity}</td>
+        <td>${item.category}</td>
+        <td>${item.expirationDate}</td>
+        <td>${item.person}</td>
     `;
-    // Make the quantity cell editable
-    newRow.querySelector('td:nth-child(2)').setAttribute("contenteditable", "true");
-    
     tableBody.appendChild(newRow);
-    const key_checker = "3";
-    if (check_key_presence(key_checker)){
-        const current_inventory_items = JSON.parse(localStorage.getItem(key_checker));
-        let new_item_arr = [...current_inventory_items,...new_items];
-        localStorage.setItem("3",JSON.stringify(new_item_arr));
-    }else{
-        localStorage.setItem("3",JSON.stringify(new_items));
-    }
-    new_item_arr = [];
-
-    // Close the modal after adding the item
-    closeModal();
 }
+
 
 
 function search() {
