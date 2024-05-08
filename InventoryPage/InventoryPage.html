@@ -49,7 +49,7 @@
         </tbody>
     </table>
     <div class="button-container">
-        <button class="button add-from-shopping-list" onclick="addToShoppingListFromShoppingPage()">Add From Shopping Page</button>
+        <button class="button add-from-shopping-list" onclick="addToInventoryFromShoppingList()">Add From Shopping Page</button>
         <button class="button add-manually" onclick="openModal()">Add Manually</button>
     </div>
 
@@ -58,32 +58,56 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Add Item Manually</h2>
             <label for="itemName">Item Name:</label><br>
-            <input type="text" id="itemName" onclick="toggleKeyboard(this)"><br>
+            <input type="text" id="itemName"><br>
             <p></p>
             <label for="quantity">Quantity:</label><br>
-            <input type="text" id="quantity" onclick="toggleKeyboard(this)"><br>
+            <input type="text" id="quantity"><br>
             <p></p>
-            <select id="category" class="input-field" onclick="toggleKeyboard(this)">
+            <select id="category" class="input-field">
                 <option value="" disabled selected>Select a category</option>
                 <option value="Pantry">Pantry</option>
                 <option value="Fridge">Fridge</option>
             </select><br>
             <p></p>
             <label for="expirationDate">Expiration Date (MM/DD/YYYY):</label><br>
-            <input type="text" id="expirationDate" placeholder="MM/DD/YYYY" onclick="toggleKeyboard(this)"><br>
+            <input type="text" id="expirationDate" placeholder="MM/DD/YYYY"><br>
             <p></p>
             <label for="person">Person:</label><br>
-            <input type="text" id="person" onclick="toggleKeyboard(this)"><br><br>
+            <input type="text" id="person"><br><br>
             <button onclick="addItemManually()">Add Item</button>
         </div>
     </div>
     <p></p>
-    <img src="icons/keyboard.png" 
-                    width="600" 
-                    height="500" 
-                    alt="Edit" 
-                    class="center-keyboard">
-
+    <div class="mobile-keyboard">
+        <div class="key-row">
+            <div class="key">q</div><div class="key">w</div><div class="key">e</div><div class="key">r</div>
+            <div class="key">t</div><div class="key">y</div><div class="key">u</div><div class="key">i</div>
+            <div class="key">o</div><div class="key">p</div>
+        </div>
+        <div class="key-row">
+            <div class="key">a</div><div class="key">s</div><div class="key">d</div><div class="key">f</div>
+            <div class="key">g</div><div class="key">h</div><div class="key">j</div><div class="key">k</div>
+            <div class="key">l</div>
+        </div>
+        <div class="key-row">
+            <div class="key shift">shift</div><div class="key">z</div><div class="key">x</div><div class="key">c</div>
+            <div class="key">v</div><div class="key">b</div><div class="key">n</div><div class="key">m</div>
+            <div class="key backspace">backspace</div>
+        </div>
+        <div class="key-row">
+            <div class="key function">123</div>
+            <div class="key function">space</div>
+            <div class="key function">return</div>
+        </div>
+    </div>    
+    <div id="errorModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModals('errorModal')">&times;</span>
+            <div id="errorText"></div>
+            <button onclick="confirmVisitShoppingList()">Yes</button>
+            <button onclick="declineVisitShoppingList()">No</button>
+        </div>
+    </div>
     <p></p>
     <section id="navigation">
         <div class="navigation-bar">
