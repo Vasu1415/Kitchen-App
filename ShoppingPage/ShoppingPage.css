@@ -21,6 +21,7 @@ body {
 .page-container {
     margin: 0 auto;
     padding: 20px;
+    text-align: center;
 }
 
 table {
@@ -42,187 +43,23 @@ th {
     display: none;
 }
 
-fieldset {
-    color: black;
-    border-radius: 10px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .display-item-button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: black;
+    padding: 12px 24px; /* Optimal padding for better button size */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    font-size: 18px; /* Larger font size for better readability */
+    font-weight: bold; /* Make the text bold for better visibility */
+    border: 2px solid #FFA500; /* Stylish border color that matches the hover state */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow for depth */
+    color: #333; /* Darker text for better contrast */
     cursor: pointer;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s;
+    background-color: #ffffff; /* Brighter background for more pop */
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transition for multiple properties */
+    text-align: center; /* Ensure text is centered */
+    display: inline-block; /* Allow the button to fit content width rather than stretching */
 }
 
-.display-item-button:hover {
-    background-color: #e0e0e0;
-}
-
-.left-section,
-.right-section {
-    width: 100%;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-input {
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #333;
-    border: 1px solid #ccc;
-    width: 70%; /* Adjust as needed */
-}
-
-.add-item-button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #555;
-    cursor: pointer;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s;
-}
-
-.add-item-button:hover {
-    background-color: #e0e0e0;
-}
-
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.quantity-btn {
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #ccc;
-    border: none;
-    color: #555;
-    transition: background-color 0.3s;
-}
-
-.quantity-btn:hover {
-    background-color: #bbb;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"] {
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    width: 70px;
-    text-align: center;
-}
-
-.navigation-bar {
-    position: fixed;
-    left: 0;
-    width: 100%;
-    background-color: #FF6700; 
-    color: black; 
-    padding: 7px;
-    text-align: center;
-    font-size: 18px; 
-    display: flex; 
-    justify-content: space-evenly; 
-    border: 2px none #ced4da; 
-}
-
-.tab-button {
-    padding: 10px 20px;
-    color: black;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    background-color: transparent; 
-    transition: background-color 0.3s;
-}
-
-.icon{
-    width: 24px; 
-    height: 24px;
-    color: black; 
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-}
-
-/* Style for the table cell */
-td {
-    background-color: lightskyblue;
-    padding: 10px;
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Align items vertically */
-    justify-content: space-evenly;
-    color: deeppink;
-}
-.item-details-1{
-    flex-grow: 2;
-}
-.purchased,
-.options {
-    flex-grow: 1; /* Each div takes equal width */
-}
-
-/* Style for the item details */
-.item-details-1{
-    color: black;
-    flex-grow: 1; /* Expand to fill available space */
-}
-
-/* Style for the options */
-.options {
-    margin-left: auto; /* Push options to the right */
-    display: flex; /* Use flexbox for layout */
-}
-
-/* Style for the edit and delete icons */
-.edit-icon,
-.delete-icon,
-.validate-icon {
-    margin-right: 10px; /* Add some space between the icons */
-    cursor: pointer;
-    width: 30px; 
-    height: 30px;
-}
-
-.purchase{
-    color:black;
-    font-size: bold;
-    justify-content:center;
-    size: 1rem;
-}
-.modal {
+/* Popup Modal */
+.popupModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -231,19 +68,198 @@ td {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal content */
-  .modal-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form Styling */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+.navigation-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px; /* Increase padding for larger height */
+    background-color: #c4f9fb;
+    font-size: 18px; /* Larger font size for overall text */
+}
+
+.tab-button {
+    text-decoration: none;
+    color: black;
+    font-size: 18px; /* Increased font size for the text in tabs */
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding to make buttons larger */
+}
+
+.tab-button .icon {
+    margin-right: 10px;
+    width: 16px; /* Larger icons */
+    height: 16px; /* Ensure icons are square, adjust as needed */
+}
+
+.tab-button:hover, .tab-button:focus {
+    color: #FFA500; /* Highlight color on hover/focus */
+    background-color: #e0f4f7; /* Slight background color on hover for better visibility */
+    border-radius: 5px; /* Rounded corners for aesthetics */
+    outline: none;
+}
+
+
+/* General style for table cells */
+td {
+    background-color: #b3e5fc;  /* Softer shade of blue */
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures that content spans the entire cell width */
+    border-bottom: 1px solid #e0f0f8; /* Adds a light border between rows for better separation */
+    color: #333; /* Darker text for better readability */
+}
+
+/* Style for the item details */
+.item-details-1 {
+    flex-grow: 2;
+    padding-right: 20px; /* Adds space between this section and the options */
+    color: #333; /* Consistent text color */
+    font-weight: 500; /* Slightly bolder font for emphasis */
+}
+
+/* Divs for purchased status and options */
+.purchased,
+.options {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Purchased status styles */
+.purchased {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #4CAF50; /* Green color for a positive visual cue */
+}
+
+/* Style for the options section */
+.options {
+    gap: 10px; /* Adds space between icons */
+}
+
+/* Icons styling */
+.edit-icon,
+.delete-icon,
+.validate-icon {
+    cursor: pointer;
+    width: 35px; /* Slightly smaller icons for subtlety */
+    height: 35px;
+    transition: transform 0.2s; /* Smooth transition for interaction */
+}
+
+.edit-icon:hover,
+.delete-icon:hover,
+.validate-icon:hover {
+    transform: scale(1.1); /* Slightly enlarge icons on hover */
+}
+
+@media (max-width: 630px) {
+    .item-details-1 {
+        flex-grow: 1;
+        padding-right: 10px;
+    }
+
+    .purchased,
+    .options {
+        flex-grow: 0;
+        flex-basis: 50px; 
+    }
+
+    td {
+        padding: 8px; 
+    }
+
+    .edit-icon,
+    .delete-icon,
+    .validate-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
   }
-  
-  /* Close button */
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+  }
   .close {
     color: #aaa;
     float: right;
@@ -258,3 +274,49 @@ td {
     cursor: pointer;
   }
   
+#confirmModal {
+    display: none; 
+    position: fixed; 
+    z-index: 2; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+#confirmModal .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; 
+    text-align: center; 
+}
+
+#confirmModal button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 15px 10px 0; 
+}
+
+#confirmModal button:hover {
+    background-color: #45a049;
+}
+
+.delete-button {
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 5px; 
+}
+
+.delete-button img {
+    width: 24px; 
+    height: 24px;
+}
