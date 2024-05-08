@@ -34,7 +34,7 @@ function addToShoppingListFromShoppingPage() {
     }
     if (shopping_lst.length < 1){
         alert("No items have been currently added to the item list");
-    }else{
+    } else{
         let table = document.getElementById("tableBody");
         for (let i = 0; i < (shopping_lst.length); i++){
             current_item = shopping_lst[i];

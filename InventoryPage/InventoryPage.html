@@ -58,25 +58,32 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Add Item Manually</h2>
             <label for="itemName">Item Name:</label><br>
-            <input type="text" id="itemName" onclick="clearInput('itemName')"><br>
+            <input type="text" id="itemName" onclick="toggleKeyboard(this)"><br>
             <p></p>
             <label for="quantity">Quantity:</label><br>
-            <input type="text" id="quantity" onclick="clearInput('quantity')"><br>
+            <input type="text" id="quantity" onclick="toggleKeyboard(this)"><br>
             <p></p>
-            <select id="category" class="input-field" onclick="clearInput('category')">
+            <select id="category" class="input-field" onclick="toggleKeyboard(this)">
                 <option value="" disabled selected>Select a category</option>
                 <option value="Pantry">Pantry</option>
                 <option value="Fridge">Fridge</option>
             </select><br>
             <p></p>
             <label for="expirationDate">Expiration Date (MM/DD/YYYY):</label><br>
-            <input type="text" id="expirationDate" placeholder="MM/DD/YYYY" onclick="clearInput('expirationDate')"><br>
+            <input type="text" id="expirationDate" placeholder="MM/DD/YYYY" onclick="toggleKeyboard(this)"><br>
             <p></p>
             <label for="person">Person:</label><br>
-            <input type="text" id="person" onclick="clearInput('person')"><br><br>
+            <input type="text" id="person" onclick="toggleKeyboard(this)"><br><br>
             <button onclick="addItemManually()">Add Item</button>
         </div>
     </div>
+    <p></p>
+    <img src="icons/keyboard.png" 
+                    width="600" 
+                    height="500" 
+                    alt="Edit" 
+                    class="center-keyboard">
+
     <p></p>
     <section id="navigation">
         <div class="navigation-bar">
