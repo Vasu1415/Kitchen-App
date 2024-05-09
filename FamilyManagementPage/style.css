@@ -314,3 +314,8 @@ input[type="checkbox"]:checked:after {
 }
 
 
+#closeMember{
+  float: right;
+  font-size: 35px;
+  color: gray;
+}
