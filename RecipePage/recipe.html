@@ -13,6 +13,9 @@
         <h1>Recipes</h1>
 
     </header>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search recipes by name...">
+    </div>
     <!-- <div id="filter-container">
         <label for="filter-select">Filter</label>
         <select id="filter-select">
@@ -28,9 +31,10 @@
             <select id="filter-select">
                 <option value="" selected>Select a filter...</option>
                 <option value="alphabetical">Alphabetical</option>
-                <option value="level">Cooking Level</option>
+                <option value="level">Skill Level</option>
                 <option value="time">Cooking Time</option>
-            </select> 
+            </select>
+            
         <!-- </button> -->
         
     </div>
@@ -113,7 +117,7 @@
             <span class="close" onclick="closeModal('recipeModal')">&times;</span>
     <form id="recipeForm">
         <input type="text" id="recipeName" placeholder="Name" required>
-        <textarea id="recipeInstructions" placeholder="Instructions" required></textarea>
+        <input type = "text" id="recipeInstructions" placeholder="Instructions" required></textarea>
         <input type="text" id="recipeIngredients" placeholder="Ingredients (comma-separated)" required>
         <input type ="text" id = "recipeTime" placeholder="Cooking Time (e.g 15 minutes)" required>
         <input type ="text" id ="allergies" placeholder="Allergies">
@@ -142,9 +146,10 @@
            
             <h2 id="recipeTitleModal"></h2>
             <h3 id = "cookTime"></h3>
-            <b>Allergies: </b><p id = "recipeAllergies"></p>
+            <b>Allergies: Beef</b><p id = "recipeAllergies"></p>
             <b>Recipe Instructions:</b>
-            <p id="recipeInstructionsModal"></p>
+            <p>Step 1:  Cook beef in 10-inch skillet over medium heat 8 to 10 minutes, stirring occasionally, until brown; drain. 2 Stir salsa into beef. Heat to boiling, stirring constantly; reduce heat to medium-low. Cook 5 minutes, stirring occasionally. Pour beef mixture into large serving bowl. 3 Heat taco shells as directed on package. Serve taco shells with beef mixture, lettuce, tomato and cheese.</p>
+            <p id="recipeInstructions"></p>
             
         </div>
     </div>
@@ -152,15 +157,34 @@
     </main>
 
     <footer>
-        <section id="navigation">
+        <!-- <section id="navigation">
             <div class="navigation-bar">
                 <a href="../HomePage/HomePage.html" class="tab-button" id="home_tab"><img src="icons/home.png" alt="Home" class="icon"></a>
-                <a href="../ShoppingPage/ShoppingPage.html" class="tab-button" id="shopping_tab"><img src="icons/shopping.png" alt="Shopping" class="icon"></a>
+                <a href="../ShoppingPage/ShoppingPage.html" class="tab-button" id="shopping_tab" style="color: #FFA500;"><img src="icons/shopping.png" alt="Shopping" class="icon"></a>
                 <a href="../InventoryPage/InventoryPage.html" class="tab-button" id="inventory_tab"><img src="icons/logistics.png" alt="Inventory" class="icon"></a>
                 <a href="recipe.html" class="tab-button" id="recipe_tab"><img src="icons/recipe-book.png" alt="Recipes" class="icon"></a>
                 <a href="../FamilyManagementPage/index.html" class="tab-button" id="family_tab"><img src="icons/group.png" alt="User" class="icon"></a>
             </div>
-        </section>
+        </section> -->
+        <section id="navigation">
+            <div class="navigation-bar">
+                <a href="../HomePage/HomePage.html" class="tab-button" id="home_tab">
+                    <img src="icons/home.png" alt="Home" class="icon"> Home
+                </a>
+                <a href="../ShoppingPage/ShoppingPage.html" class="tab-button" id="shopping_tab"> <!-- Highlighted since we're on this page -->
+                    <img src="icons/shopping.png" alt="Shopping" class="icon"> Shopping
+                </a>
+                <a href="../InventoryPage/InventoryPage.html" class="tab-button" id="inventory_tab">
+                    <img src="icons/logistics.png" alt="Inventory" class="icon"> Inventory
+                </a>
+                <a href="../RecipePage/Recipe.html" class="tab-button" id="recipe_tab" style="color: #FFA500;">
+                    <img src="icons/recipe-book.png" alt="Recipes" class="icon"> Recipes
+                </a>
+                <a href="../FamilyManagementPage/index.html" class="tab-button" id="family_tab">
+                    <img src="icons/group.png" alt="User" class="icon"> Family
+                </a>
+            </div>
+        </section>  
     </footer>
     
     <script src="recipe.js"></script>
