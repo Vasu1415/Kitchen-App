@@ -11,6 +11,7 @@
         <h2>Family Management</h2>
     </div>
     <div class="container">
+        <div id="admin-block">
         <h3><u>Admin</u></h3>
         <div id="admin" class="section">
             <label>
@@ -25,7 +26,8 @@
             <p>Cooking Level: <span id="adminCookingLevel" class="cookingLevel">3</span></p>
             <p>Allergy: <span id="adminAllergy" class="allergy">None</span></p>
         </div>
-
+</div>
+    <div id="members-block">
         <h3><u>Members</u></h3>
         <div id="other-users">
             <h3 id="user-default">No Users Found</h3>
@@ -34,6 +36,7 @@
             <button class="function" id="addButton" onclick="display_member_popup(true)"><strong>Add User</strong></button>
             <button class="function" id="deleteButton"><strong>Delete User</strong></button>
         </div>
+    </div>
         <div id="new-member-popup" class="popup">
             <div id="member-content" class="popup-content">
                 <span id="closeMember">&times;</span>
