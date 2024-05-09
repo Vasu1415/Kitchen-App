@@ -164,33 +164,33 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 .navigation-bar {
-    background-color: #c4f9fb; 
-    color: black; 
-    padding: 7px;
-    text-align: center;
-    font-size: 18px; 
-    display: flex; 
-    justify-content: space-evenly; 
-    border: 2px none #ced4da; 
+    display: flex;
+    justify-content: space-around;
+    padding: 10px; /* Increase padding for larger height */
+    background-color: #c4f9fb;
+    font-size: 18px; /* Larger font size for overall text */
 }
 
 .tab-button {
-    padding: 10px 20px;
+    text-decoration: none;
     color: black;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    background-color: transparent; 
-    transition: background-color 0.3s;
+    font-size: 18px; /* Increased font size for the text in tabs */
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding to make buttons larger */
 }
 
-.icon{
-    width: 24px; 
-    height: 24px;
-    color: black; 
-    cursor: pointer;
+.tab-button .icon {
     margin-right: 10px;
-    transition: background-color 0.3s;
+    width: 16px; /* Larger icons */
+    height: 16px; /* Ensure icons are square, adjust as needed */
+}
+
+.tab-button:hover, .tab-button:focus {
+    color: #FFA500; /* Highlight color on hover/focus */
+    background-color: #e0f4f7; /* Slight background color on hover for better visibility */
+    border-radius: 5px; /* Rounded corners for aesthetics */
+    outline: none;
 }
 /* Modal styles */
 .modal {
