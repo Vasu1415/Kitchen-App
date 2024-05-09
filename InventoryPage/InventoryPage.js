@@ -1,13 +1,15 @@
-let new_items = [];
-
 document.addEventListener("DOMContentLoaded", loadInventory);
 
 function loadInventory() {
     const inventoryData = JSON.parse(sessionStorage.getItem("invData"));
     console.log('Loaded Inventory Data:', inventoryData);
-    if (inventoryData) {
+    if (inventoryData && inventoryData.length) {
         const table = document.getElementById("tableBody");
-        table.innerHTML = ''; // Clear previous rows if any
+        if (!table) {
+            console.error('Table body not found');
+            return;
+        }
+        table.innerHTML = ''; 
         inventoryData.forEach(item => {
             const newRow = document.createElement("tr");
             newRow.innerHTML = `
@@ -19,8 +21,11 @@ function loadInventory() {
             `;
             table.appendChild(newRow);
         });
+    } else {
+        console.log('No inventory data or empty inventory');
     }
 }
+
 
 function displayErrorModal() {
     document.getElementById('errorText').innerHTML = 'You have no items in your shopping list! Would you like to visit the page?';
@@ -89,12 +94,20 @@ function clearInput(id) {
     document.getElementById(id).value = "";
 }
 
+let new_items = [];
+
 function addItemManually() {
-    var itemName = document.getElementById("itemName").value;
-    var quantity = document.getElementById("quantity").value;
+    var itemName = document.getElementById("itemName").value.trim();
+    var quantity = document.getElementById("quantity").value.trim();
     var category = document.getElementById("category").value;
-    var expirationDate = document.getElementById("expirationDate").value;
-    var person = document.getElementById("person").value;
+    var expirationDate = document.getElementById("expirationDate").value.trim();
+    var person = document.getElementById("person").value.trim();
+
+    // Basic validation to ensure no empty values are added
+    if (!itemName || !quantity || category === '' || !expirationDate || !person) {
+        alert('Please fill all fields correctly.');
+        return;
+    }
 
     var newItem = {
         item_name: itemName,
@@ -103,13 +116,15 @@ function addItemManually() {
         expirationDate: expirationDate,
         person_name: person
     };
-    
-    var currentInventory = JSON.parse(sessionStorage.getItem("invData")) || [];
-    currentInventory.push(newItem);
-    sessionStorage.setItem("invData", JSON.stringify(currentInventory));
+
+    var inventoryItems = JSON.parse(sessionStorage.getItem("invData")) || [];
+    inventoryItems.push(newItem);
+    sessionStorage.setItem("invData", JSON.stringify(inventoryItems));
+    console.log(sessionStorage.getItem("invData"));
     addRowToTable(newItem);
     closeModal();
 }
+
 
 function addRowToTable(item) {
     var tableBody = document.getElementById("tableBody");

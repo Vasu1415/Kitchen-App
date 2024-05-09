@@ -320,3 +320,42 @@ td {
     width: 24px; 
     height: 24px;
 }
+.mobile-keyboard {
+    width: 100%;
+    max-width: 400px; /* Adjust based on your preference */
+    background-color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.key {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px 12px;
+    margin: 0 2px;
+    text-align: center;
+    flex-grow: 1;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.key:hover {
+    background-color: #ddd;
+}
+
+.shift, .backspace, .function {
+    flex-grow: 2;
+}
+
+.function {
+    text-align: center;
+}
