@@ -52,15 +52,11 @@ function addItem(event) {
             Person: <span>${person_name}</span><br>
             Quantity: <span>${quantity}</span><br>
         </div>
-        <div class="purchased">
-            <span class="purchase"></span>
-        </div>
         <div class="options">
             <img src="icons/pencil.png" alt="editor" class="edit-icon" onclick="editItem(this)">
             <button class="delete-button" onclick="confirmDelete(this)">
                 <img src="icons/delete.png" alt="trash bin" class="delete-icon">
             </button>
-            <img src="icons/buy.png" alt="validation" class="validate-icon" onclick="validateItem(this)">                
         </div>
     </td>
     `;
@@ -108,13 +104,6 @@ function editItem(element) {
     }
 }
 
-function validateItem(element) {
-    let row = element.parentNode.parentNode;
-    let purchaseSpan = row.querySelector('.purchased .purchase');
-    if (purchaseSpan) {
-        purchaseSpan.textContent = "PURCHASED";
-    }
-}
 
 function displayItem() {
     document.getElementById('popupModal').style.display = 'block';
@@ -156,15 +145,11 @@ function updateTable() {
                     Person: <span>${item.person_name}</span><br>
                     Quantity: <span>${item.quantity}</span><br>
                 </div>
-                <div class="purchased">
-                    <span class="purchase"></span>
-                </div>
                 <div class="options">
                     <img src="icons/pencil.png" alt="editor" class="edit-icon" onclick="editItem(this)">
                     <button class="delete-button" onclick="confirmDelete(this)">
                         <img src="icons/delete.png" alt="trash bin" class="delete-icon">
                     </button>
-                    <img src="icons/buy.png" alt="validation" class="validate-icon" onclick="validateItem(this)">
                 </div>
             </td>
         </tr>
