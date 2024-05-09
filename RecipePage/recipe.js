@@ -182,7 +182,7 @@ function ingredient_checker(button){
         recipeDetails.innerHTML += "</p>"; 
         document.getElementById("myModal").style.display = "block";
     } else {
-        document.getElementById("missing-items-msg").innerHTML = "Missing items will be added to the shopping list soon";
+        document.getElementById("missing-items-msg").innerHTML = "Missing items will be added to the shopping list soon. Currently building this functionality";
         document.getElementById("myModal2").style.display = "block";
     }
 }

@@ -110,7 +110,7 @@
 
     <div id="recipeModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeModal('recipeModal')">&times;</span>
     <form id="recipeForm">
         <input type="text" id="recipeName" placeholder="Name" required>
         <textarea id="recipeInstructions" placeholder="Instructions" required></textarea>
@@ -138,6 +138,7 @@
 
     <div id="instructionsModal" class="modal">
         <div class="modal-content">
+            <span class="close" onclick="closeModal('instructionsModal')">&times;</span>
            
             <h2 id="recipeTitleModal"></h2>
             <h3 id = "cookTime"></h3>
@@ -153,23 +154,13 @@
     <footer>
         <section id="navigation">
             <div class="navigation-bar">
-                <a href="../HomePage/HomePage.html" class="tab-button" id="home_tab">
-                    <img src="icons/home.png" alt="Home" class="icon"> Home
-                </a>
-                <a href="../ShoppingPage/ShoppingPage.html" class="tab-button" id="shopping_tab"> <!-- Highlighted since we're on this page -->
-                    <img src="icons/shopping.png" alt="Shopping" class="icon"> Shopping
-                </a>
-                <a href="../InventoryPage/InventoryPage.html" class="tab-button" id="inventory_tab">
-                    <img src="icons/logistics.png" alt="Inventory" class="icon"> Inventory
-                </a>
-                <a href="../RecipePage/Recipe.html" class="tab-button" id="recipe_tab" style="color: #FFA500;">
-                    <img src="icons/recipe-book.png" alt="Recipes" class="icon"> Recipes
-                </a>
-                <a href="../FamilyManagementPage/index.html" class="tab-button" id="family_tab">
-                    <img src="icons/group.png" alt="User" class="icon"> Family
-                </a>
+                <a href="../HomePage/HomePage.html" class="tab-button" id="home_tab"><img src="icons/home.png" alt="Home" class="icon"></a>
+                <a href="../ShoppingPage/ShoppingPage.html" class="tab-button" id="shopping_tab"><img src="icons/shopping.png" alt="Shopping" class="icon"></a>
+                <a href="../InventoryPage/InventoryPage.html" class="tab-button" id="inventory_tab"><img src="icons/logistics.png" alt="Inventory" class="icon"></a>
+                <a href="recipe.html" class="tab-button" id="recipe_tab"><img src="icons/recipe-book.png" alt="Recipes" class="icon"></a>
+                <a href="../FamilyManagementPage/index.html" class="tab-button" id="family_tab"><img src="icons/group.png" alt="User" class="icon"></a>
             </div>
-        </section> 
+        </section>
     </footer>
     
     <script src="recipe.js"></script>
