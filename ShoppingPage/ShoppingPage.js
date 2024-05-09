@@ -48,7 +48,7 @@ function addItem(event) {
     <td>
         <div class="item-details-1">
             Item Name: <span>${item_name}</span><br>
-            Item Category: <span>${category}</span><br>
+            Item Location: <span>${category}</span><br>
             Person: <span>${person_name}</span><br>
             Quantity: <span>${quantity}</span><br>
         </div>
@@ -141,7 +141,7 @@ function updateTable() {
             <td>
                 <div class="item-details-1">
                     Item Name: <span>${item.item_name}</span><br>
-                    Item Category: <span>${item.category}</span><br>
+                    Item Location: <span>${item.category}</span><br>
                     Person: <span>${item.person_name}</span><br>
                     Quantity: <span>${item.quantity}</span><br>
                 </div>
