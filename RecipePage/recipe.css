@@ -14,6 +14,19 @@ body, html {
 	
 }
 
+#search-container {
+    text-align: center;
+    margin: 20px;
+}
+
+#search-input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
 header {
     background-color: #4CAF50;
     color: white;

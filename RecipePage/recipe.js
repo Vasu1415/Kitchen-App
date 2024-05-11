@@ -32,6 +32,7 @@ function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instr
     card.setAttribute('data-cuisine', "American"); // Assuming this is static, adjust if necessary
     card.setAttribute('data-cookingTime', minutes + " minutes");
     card.setAttribute('data-allergies', allergies);
+    card.setAttribute('data-instructions', instructions);
 
     const imageDiv = document.createElement('div');
     imageDiv.className = 'recipe-image';
@@ -68,11 +69,16 @@ function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instr
     const divAllergies = document.createElement('div');
     divAllergies.textContent = allergies ? 'Allergies: ' + allergies : 'No Allergies'; // Shows allergies if any
 
+    const divInstructions = document.createElement('div');
+    divInstructions.textContent = instructions
+
     // Appending information divs to the infoDiv
     infoDiv.appendChild(divMinutes);
     infoDiv.appendChild(divCookingLevel);
     infoDiv.appendChild(divGlutenFree);
     infoDiv.appendChild(divAllergies);
+    infoDiv.appendChild(divInstructions);
+    
 
     const arrowButton = document.createElement('button');
     arrowButton.className = 'recipe-arrow';
@@ -80,7 +86,7 @@ function addRecipeToPage(name, minutes, glutenFree, ingredients, imageUrl, instr
     arrowButton.setAttribute('data-instructions', instructions);
     arrowButton.addEventListener('click', function() {
         document.getElementById('recipeTitleModal').textContent = name;
-        document.getElementById('recipeInstructionsModal').textContent = instructions;
+        document.getElementById('recipeInstructions').textContent = instructions;
         document.getElementById('recipeAllergies').textContent = allergies ? 'Allergies: ' + allergies : 'No Allergies';
         document.getElementById('cookTime').textContent = minutes + " Minute Meal";
         document.getElementById('instructionsModal').style.display = 'block';
@@ -182,7 +188,7 @@ function ingredient_checker(button){
         recipeDetails.innerHTML += "</p>"; 
         document.getElementById("myModal").style.display = "block";
     } else {
-        document.getElementById("missing-items-msg").innerHTML = "Missing items will be added to the shopping list soon";
+        document.getElementById("missing-items-msg").innerHTML = "Missing items will be added to the shopping list. Your missing items are: " + required_ingredients + "   .Currently building this functionality";
         document.getElementById("myModal2").style.display = "block";
     }
 }
@@ -190,6 +196,31 @@ function ingredient_checker(button){
 // Function to close the modal
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = "none";
+}
+
+document.getElementById('instructionsModal').addEventListener('click', function(event) {
+    this.style.display = 'none';
+});
+document.querySelectorAll('#instructionsModal .modal-content, #instructionsModal .modal-content *').forEach(function(element) {
+    element.addEventListener('click', function(event) {
+        event.stopPropagation();  // This stops the click event from propagating to the modal itself
+    });
+});
+
+window.addEventListener('click', function(event) {
+    var recipeModal = document.getElementById('recipeModal');
+    if (event.target == recipeModal) {
+        recipeModal.style.display = "none";
+    }
+});
+
+function closeModal(modalId) {
+    var modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = "none";
+    } else {
+        console.error("No modal found with ID:", modalId);
+    }
 }
 
 
@@ -252,30 +283,44 @@ document.getElementById('filter-select').addEventListener('change', function() {
     const recipeContainer = document.getElementById('recipe-container');
     let recipeCards = Array.from(recipeContainer.getElementsByClassName('recipe-card'));
 
-	if(filterValue === ''){
-
-	}else if (filterValue === 'alphabetical') {
+    if (filterValue === 'alphabetical') {
         recipeCards.sort((a, b) => a.getAttribute('data-name').localeCompare(b.getAttribute('data-name')));
     } else if (filterValue === 'level') {
         recipeCards.sort((a, b) => parseInt(a.getAttribute('data-cookingLevel'), 10) - parseInt(b.getAttribute('data-cookingLevel'), 10));
-    } else if (filterValue === 'cuisine') {
-        recipeCards.sort((a, b) => a.getAttribute('data-cuisine').localeCompare(b.getAttribute('data-cuisine')));
-    // } else if (filterValue === 'time') { // New filter by recipeTime
-    //     recipeCards.sort((a, b) => parseInt(a.getAttribute('data-cookingTime'), 10) - parseInt(b.getAttribute('data-cookingTime'), 10));
-    }else if (filterValue === 'time') {
+    } else if (filterValue === 'time') {
         recipeCards.sort((a, b) => {
             const timeA = parseInt(a.getAttribute('data-cookingTime'), 10);
             const timeB = parseInt(b.getAttribute('data-cookingTime'), 10);
             return timeA - timeB;
         });
-	}
+    } else if (filterValue === 'allergens') {
+        // Show only recipes with allergens (can be adjusted to filter specific allergens)
+        recipeCards = recipeCards.filter(card => {
+            const allergens = card.getAttribute('data-allergies');
+            return allergens && allergens !== 'None'; // Adjust condition based on how allergens are noted
+        });
+    }
 
-    // Clear the container and re-append cards in sorted order
     recipeContainer.innerHTML = '';
     recipeCards.forEach(card => recipeContainer.appendChild(card));
 });
 
 
+
+document.getElementById('search-input').addEventListener('input', function() {
+    const searchValue = this.value.toLowerCase();
+    const recipeContainer = document.getElementById('recipe-container');
+    let recipeCards = Array.from(recipeContainer.getElementsByClassName('recipe-card'));
+
+    recipeCards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        if (name.includes(searchValue)) {
+            card.style.display = ''; // Show the card if the name matches
+        } else {
+            card.style.display = 'none'; // Hide the card if the name does not match
+        }
+    });
+});
 
 
 
